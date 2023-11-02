@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import Layout from '@/layouts/Base.astro';
 import ContactCTA from '$lib/components/ContactCTA.astro';
 import Icon from '$lib/icons/Icon.astro';
 import Hero from '$lib/ui/Hero.astro';
@@ -25,7 +25,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout
+<Layout
   title={entry.data.title}
   description={entry.data.description}>
   <div class='gap-15 flex flex-col'>
@@ -66,7 +66,7 @@ const { Content } = await entry.render();
     </main>
   </div>
   <ContactCTA />
-</BaseLayout>
+</Layout>
 
 <style>
   header {

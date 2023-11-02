@@ -1,18 +1,25 @@
 ---
 import { /*slide, fade,*/ ViewTransitions } from 'astro:transitions';
 import twMerge from '$lib/tailwind';
-import Head from '@/lib/components/Head.astro';
-import Nav from '$lib/components/Nav.astro';
-import Footer from '$lib/components/Footer.astro';
+import { Footer, Head, Nav /*, YandexMetrika*/ } from '@/lib/components';
+
+import '@/styles/global.css';
 
 interface Props {
   class?: ClassName;
   title?: string | undefined;
   description?: string | undefined;
+  schema?: string;
 }
 
-const { class: className, title, description } = Astro.props;
+const { class: className, title, description, schema = 'WebPage' } = Astro.props;
 
+import { app /*, seo*/ } from '$lib/configs';
+/*
+const {
+  yandex: { counter }
+} = seo;
+*/
 /*
 const animate = {
   old: {
@@ -44,12 +51,16 @@ const fade = {
   class='theme-dark'>
   <head>
     <Head
-      title={title}
-      description={description}
+      {title}
+      {description}
+      {app}
     />
     <ViewTransitions />
   </head>
-  <body>
+
+  <body
+    itemscope
+    itemtype={`https://schema.org/${schema}`}>
     <div class='backdrop flex min-h-screen flex-col'>
       <Nav />
       <div class={twMerge('flex grow flex-col gap-20', className)}>

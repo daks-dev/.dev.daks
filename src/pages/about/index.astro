@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import Layout from '@/layouts/Base.astro';
 import ContactCTA from '$lib/components/ContactCTA.astro';
 import Hero from '$lib/ui/Hero.astro';
 ---
 
-<BaseLayout
+<Layout
   title='About | DAKS.DEV'
   description='About DAKS.DEV Lorem Ipsum'>
   <main class='wrapper about'>
@@ -60,7 +60,7 @@ import Hero from '$lib/ui/Hero.astro';
   </main>
 
   <ContactCTA />
-</BaseLayout>
+</Layout>
 
 <style>
   .about {

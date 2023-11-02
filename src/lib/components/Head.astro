@@ -1,55 +1,49 @@
 ---
-import '@/styles/global.css';
+import pkg from 'package.json';
+const { version } = pkg;
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  app?: Record<string, string>;
+  rss?: string;
+  image?: string;
 }
-
-const { title = 'DAKS.DEV: Personal Site', description = 'The personal site of DAKS.DEV' } =
-  Astro.props;
+const {
+  title = 'DAKS.DEV: Personal Site',
+  description = 'The personal site of DAKS.DEV',
+  app,
+  rss,
+  image = '/icons/logo.svg'
+} = Astro.props;
 
 // : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 ---
 
 <meta charset='UTF-8' />
 <meta
-  name='description'
-  property='og:description'
-  content={description}
-/>
-<meta
   name='viewport'
   content='width=device-width'
 />
 <meta
-  name='generator'
-  content={Astro.generator}
+  name='robots'
+  content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
 />
-<title>{title}</title>
+<link
+  rel='canonical'
+  href={new URL(Astro.url.pathname, Astro.site)}
+/>
 
-<link
-  rel='icon'
-  type='image/svg+xml'
-  href='/favicon.svg'
+<title>{title}</title>
+<meta
+  name='title'
+  content={title}
 />
-{
-  /*
-<link
-  rel='preconnect'
-  href='https://fonts.googleapis.com'
+<meta
+  name='description'
+  content={description}
 />
-<link
-  rel='preconnect'
-  href='https://fonts.gstatic.com'
-  crossorigin
-/>
-<link
-  href='https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap'
-  rel='stylesheet'
-/>
-  */
-}
+
 <script is:inline>
   ((e, l, i, c) => {
     const get = () => (l?.getItem(i) ? l.getItem(i) : e.classList.contains(c) ? 'dark' : 'light');
@@ -62,3 +56,100 @@ const { title = 'DAKS.DEV: Personal Site', description = 'The personal site of D
     document.addEventListener('astro:after-swap', set);
   })(document.documentElement, localStorage, 'theme', 'theme-dark');
 </script>
+
+{
+  rss && (
+    <link
+      rel='alternate'
+      type='application/rss+xml'
+      title='RSS'
+      href={new URL(rss, Astro.site)}
+    />
+  )
+}
+
+<link
+  rel='alternate icon'
+  href=`/favicon.ico?v=${version}`
+  sizes='any'
+/>
+<link
+  rel='apple-touch-icon'
+  href=`/favicon/192.png?v=${version}`
+/>
+<link
+  rel='icon'
+  href=`/favicon/icon.svg?v=${version}`
+  type='image/svg+xml'
+/>
+<link
+  rel='manifest'
+  href='/manifest.webmanifest'
+/>
+<meta
+  name='msapplication-config'
+  content='/browserconfig.xml'
+/>
+{
+  app?.themeColor && (
+    <meta
+      name='theme-color'
+      content={app.themeColor}
+    />
+  )
+}
+{
+  app?.tileColor && (
+    <meta
+      name='msapplication-TileColor'
+      content={app.tileColor}
+    />
+  )
+}
+{
+  app?.shortName && (
+    <>
+      <meta
+        name='application-name'
+        content={app.shortName}
+      />
+      <meta
+        name='apple-mobile-web-app-title'
+        content={app.shortName}
+      />
+    </>
+  )
+}
+<link
+  rel='yandex-tableau-widget'
+  href='/tableau.json'
+/>
+<meta
+  property='og:type'
+  content='website'
+/>
+<meta
+  property='og:url'
+  content={Astro.url}
+/>
+<meta
+  property='og:title'
+  content={title}
+/>
+<meta
+  property='og:description'
+  content={description}
+/>
+{
+  image && (
+    <meta
+      property='og:image'
+      content={new URL(image, Astro.url)}
+    />
+  )
+}
+
+<meta
+  name='generator'
+  content={Astro.generator}
+/>

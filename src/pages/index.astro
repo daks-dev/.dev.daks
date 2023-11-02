@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import Layout from '@/layouts/Base.astro';
 
 // Component Imports
 import CallToAction from '$lib/ui/CallToAction.astro';
@@ -25,7 +25,7 @@ const projects = (await getCollection('work'))
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<BaseLayout class='bp:gap-48'>
+<Layout class='bp:gap-48'>
   <div class='wrapper flex flex-col gap-8 lg:gap-20'>
     <header class='hero'>
       <Hero
@@ -60,8 +60,10 @@ const projects = (await getCollection('work'))
 
       <!-- /images/portrait.jpg -->
       <img
-        class='max-w-xs bg-gradient-impact'
+        class='w-full max-w-xs bg-gradient-impact'
         src='/icons/astro.svg'
+        width='128'
+        height='128'
         alt='astrojs'
       />
     </header>
@@ -123,7 +125,7 @@ const projects = (await getCollection('work'))
   </main>
 
   <ContactCTA />
-</BaseLayout>
+</Layout>
 
 <style lang="postcss">
 

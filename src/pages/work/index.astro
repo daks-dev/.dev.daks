@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 
-import BaseLayout from '@/layouts/BaseLayout.astro';
+import Layout from '@/layouts/Base.astro';
 
 import ContactCTA from '$lib/components/ContactCTA.astro';
 import PortfolioPreview from '$lib/components/PortfolioPreview.astro';
@@ -13,7 +13,7 @@ const projects = (await getCollection('work')).sort(
 );
 ---
 
-<BaseLayout
+<Layout
   title='My Work | DAKS.DEV'
   description="Learn about DAKS.DEV's most recent projects">
   <main class='wrapper flex flex-col gap-8'>
@@ -33,4 +33,4 @@ const projects = (await getCollection('work')).sort(
     </Grid>
   </main>
   <ContactCTA />
-</BaseLayout>
+</Layout>
