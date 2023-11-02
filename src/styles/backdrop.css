@@ -1,0 +1,84 @@
+:root {
+  --bg-color: #ffffff;
+  --bg-placeholder: linear-gradient(transparent, transparent);
+  --bg-image-main: url('/images/bg/light/main/800w.jpg');
+  --bg-image-main-curves: url('/images/bg/light/main/curves.svg');
+  --bg-image-subtle-0: var(--bg-placeholder);
+  --bg-image-subtle-1: var(--bg-placeholder);
+  --bg-image-footer: var(--bg-placeholder);
+  --bg-svg-blend-mode: overlay;
+  --bg-blend-mode: darken;
+  --bg-image-aspect-ratio: 2.25;
+  --bg-scale: 1.68;
+  --bg-aspect-ratio: calc(var(--bg-image-aspect-ratio) / var(--bg-scale));
+  --bg-gradient-size: calc(var(--bg-scale) * 100%);
+}
+
+:root.theme-dark {
+  --bg-color: #090b11;
+  --bg-image-main: url('/images/bg/dark/main/800w.jpg');
+  --bg-image-main-curves: url('/images/bg/dark/main/curves.svg');
+  --bg-svg-blend-mode: darken;
+  --bg-blend-mode: lighten;
+}
+
+/* These backgrounds are displayed below the fold, so we lazy load them once the `.loaded` class has been set.  */
+:root.loaded {
+  --bg-image-subtle-0: url('/images/bg/light/subtle/0/800w.jpg');
+  --bg-image-subtle-1: url('/images/bg/light/subtle/1/800w.jpg');
+  --bg-image-footer: url('/images/bg/light/footer/800w.jpg');
+}
+
+:root.loaded.theme-dark {
+  --bg-image-subtle-0: url('/images/bg/dark/subtle/0/800w.jpg');
+  --bg-image-subtle-1: url('/images/bg/dark/subtle/1/800w.jpg');
+  --bg-image-footer: url('/images/bg/dark/footer/800w.jpg');
+}
+
+@media (min-width: 50em) {
+  :root {
+    --bg-scale: 1;
+    --bg-image-main: url('/images/bg/light/main/1440w.jpg');
+  }
+  :root.theme-dark {
+    --bg-image-main: url('/images/bg/dark/main/1440w.jpg');
+  }
+  :root.loaded {
+    --bg-image-subtle-0: url('/images/bg/light/subtle/0/1440w.jpg');
+    --bg-image-subtle-1: url('/images/bg/light/subtle/1/1440w.jpg');
+    --bg-image-footer: url('/images/bg/light/footer/1440w.jpg');
+  }
+  :root.loaded.theme-dark {
+    --bg-image-subtle-0: url('/images/bg/dark/subtle/0/1440w.jpg');
+    --bg-image-subtle-1: url('/images/bg/dark/subtle/1/1440w.jpg');
+    --bg-image-footer: url('/images/bg/dark/footer/1440w.jpg');
+  }
+}
+
+.backdrop {
+  /* min-height: 100%; */
+  isolation: isolate;
+  background:
+    /*noise*/
+    url('/images/bg/noise.png') top center/220px repeat,
+    /*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+    /*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+    /*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+    /*base*/ var(--bg-color);
+  background-blend-mode:
+    /*noise*/
+    overlay,
+    /*footer*/ var(--bg-blend-mode),
+    /*header1*/ var(--bg-svg-blend-mode),
+    /*header2*/ normal,
+    /*base*/ normal;
+}
+
+@media (forced-colors: active) {
+  /* Deactivate custom backgrounds for high contrast users. */
+  .backgrounds {
+    background: none;
+    background-blend-mode: none;
+    --bg-gradient-size: none;
+  }
+}
