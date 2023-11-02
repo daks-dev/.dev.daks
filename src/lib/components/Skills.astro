@@ -1,0 +1,92 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section
+  class:list={[
+    'p-6 md:p-10',
+    'flex flex-col gap-12 md:grid md:grid-cols-3 md:gap-20',
+    'bg-light-950/40 dark:bg-dark-950/40',
+    'border border-light-700 dark:border-dark-700',
+    'rounded-xl shadow-sm md:rounded-3xl'
+  ]}>
+  <div class='stack gap-2 lg:gap-4'>
+    <Icon
+      icon='terminal-window'
+      color='var(--impact)'
+      size='2.5rem'
+      gradient
+    />
+    <h2 class='text-lg md:text-2xl'>Full Stack</h2>
+    <p class='text-light-400 dark:text-dark-400'>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.
+    </p>
+  </div>
+  <div class='flex flex-col gap-2 md:gap-4'>
+    <Icon
+      icon='trophy'
+      class='text-impact'
+      size='2.5rem'
+      gradient
+    />
+    <h2 class='text-lg md:text-2xl'>Industry Leader</h2>
+    <p class='text-light-400 dark:text-dark-400'>
+      Neque viverra justo nec ultrices dui. Est ultricies integer quis auctor elit.
+    </p>
+  </div>
+  <div class='flex flex-col gap-2 md:gap-4'>
+    <Icon
+      icon='strategy'
+      class='text-impact'
+      size='2.5rem'
+      gradient
+    />
+    <h2 class='text-lg md:text-2xl'>Strategy-Minded</h2>
+    <p class='text-light-400 dark:text-dark-400'>
+      Urna porttitor rhoncus dolor purus non enim praesent ornare.
+    </p>
+  </div>
+</section>
+
+{
+  /*
+<style lang="postcss">
+  .box {
+    padding: 1.5rem;
+    background-color: var(--primary-950_40);
+    border: 1px solid var(--primary-800);
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .skills h2 {
+    font-size: var(--text-lg);
+  }
+
+  .skills p {
+    color: var(--primary-400);
+  }
+
+  @media (min-width: 50em) {
+    .box {
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+    }
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5rem;
+    }
+    .skills h2 {
+      font-size: var(--text-2xl);
+    }
+  }
+</style>
+  */
+}

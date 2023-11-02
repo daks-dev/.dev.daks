@@ -1,0 +1,73 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import twMerge from '$lib/tailwind';
+import iconPaths from './icon-paths';
+
+interface Props extends Omit<HTMLAttributes<'svg'>, 'class'> {
+  icon: keyof typeof iconPaths;
+  class?: ClassName;
+  color?: string;
+  gradient?: boolean;
+  size?: number | string;
+}
+
+const {
+  icon,
+  class: className,
+  color = 'currentcolor',
+  gradient,
+  size = '1em',
+  ...props
+} = Astro.props;
+const iconPath = iconPaths[icon];
+
+const gradientId = `_${Math.floor((1 + Math.random()) * 0x1000)
+  .toString(16)
+  .substring(1)}`;
+---
+
+<svg
+  class:list={twMerge('align-middle', className)}
+  xmlns='http://www.w3.org/2000/svg'
+  width={size}
+  height={size}
+  viewBox='0 0 256 256'
+  stroke={gradient ? `url(#${gradientId})` : color}
+  fill={gradient ? `url(#${gradientId})` : color}
+  aria-hidden='true'
+  {...props}>
+  <g set:html={iconPath} />
+  {
+    gradient && (
+      <linearGradient
+        id={gradientId}
+        x1='23'
+        x2='235'
+        y1='43'
+        y2='202'
+        gradientUnits='userSpaceOnUse'>
+        <stop stop-color='var(--gradient-from)' />
+        <stop
+          offset='.5'
+          stop-color='var(--gradient-via)'
+        />
+        <stop
+          offset='1'
+          stop-color='var(--gradient-to)'
+        />
+      </linearGradient>
+    )
+  }
+</svg>
+
+{
+  /*
+<style>
+  svg {
+    vertical-align: middle;
+    width: var(--size, 1em);
+    height: var(--size, 1em);
+  }
+</style>
+  */
+}

@@ -1,0 +1,60 @@
+---
+import CallToAction from './CallToAction.astro';
+import Icon from './Icon.astro';
+---
+
+<aside
+  class:list={[
+    'flex flex-col items-center gap-12 md:flex-row md:flex-wrap md:justify-between',
+    'px-6 py-20 md:p-32',
+    'bg-light-950/40 dark:bg-dark-950/40',
+    'shadow-sm',
+    'border-b border-t border-light-800 dark:border-dark-800'
+  ]}>
+  <h2 class='max-w-[15ch] text-center text-xl md:text-left md:text-3xl'>
+    Interested in working together?
+  </h2>
+  <CallToAction href='mailto:mail@daks.dev'>
+    Send Me a Message
+    <Icon
+      icon='paper-plane-tilt'
+      size='1.2em'
+    />
+  </CallToAction>
+</aside>
+
+{
+  /*
+<style>
+  aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    border-top: 1px solid var(--primary-800);
+    border-bottom: 1px solid var(--primary-800);
+    padding: 5rem 1.5rem;
+    background-color: var(--primary-950_40);
+    box-shadow: var(--shadow-sm);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    text-align: center;
+    max-width: 15ch;
+  }
+
+  @media (min-width: 50em) {
+    aside {
+      padding: 7.5rem;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+    h2 {
+      font-size: var(--text-3xl);
+      text-align: left;
+    }
+  }
+</style>
+  */
+}

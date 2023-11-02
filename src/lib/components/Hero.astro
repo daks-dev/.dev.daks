@@ -1,0 +1,79 @@
+---
+interface Props {
+  title?: string;
+  tagline?: string;
+  align?: 'start' | 'center';
+}
+
+const { align = 'center', tagline, title } = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex flex-col gap-4',
+    'text-center text-lg md:text-xl',
+    align === 'start' && 'md:text-start'
+  ]}>
+  <div class='flex flex-col gap-2'>
+    <h1
+      class:list={[
+        'me-auto ms-auto max-w-[37ch]',
+        'text-2xl text-light dark:text-dark sm:text-3xl md:text-5xl',
+        align === 'start' && 'md:me-auto md:ms-auto'
+      ]}>
+      <slot name='title'>
+        <Fragment set:html={title} />
+      </slot>
+    </h1>
+    {
+      tagline && (
+        <p
+          class:list={[
+            'me-auto ms-auto max-w-[37ch]',
+            align === 'start' && 'md:[margin-inline:unset]'
+          ]}
+          set:html={tagline}
+        />
+      )
+    }
+  </div>
+  <slot />
+</div>
+
+{
+  /*
+<style>
+  .hero {
+    font-size: var(--text-lg);
+    text-align: center;
+  }
+
+  .title,
+  .tagline {
+    max-width: 37ch;
+    margin-inline: auto;
+  }
+
+  .title {
+    color: var(--primary);
+    font-size: var(--text-3xl);
+  }
+
+  @media (min-width: 50em) {
+    .hero {
+      font-size: var(--text-xl);
+    }
+    .start {
+      text-align: start;
+    }
+    .title {
+      font-size: var(--text-5xl);
+    }
+    .start .title,
+    .start .tagline {
+      margin-inline: unset;
+    }
+  }
+</style>
+  */
+}

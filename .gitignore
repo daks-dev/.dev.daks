@@ -1,0 +1,61 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# vercel
+.vercel
+
+# ide
+.vscode
+.idea
+
+# misc
+.DS_Store
+*.log
+*.ntvs*
+*.njsproj
+*.pem
+*.sln
+*.suo
+*.sw?
+
+# generated
+node_modules
+package-lock.json
+pnpm-lock.yaml
+
+.astro/
+.svelte-kit/
+.next/
+build/
+dist/
+dist-ssr/
+out/
+
+.timestamp-*
+
+.pnp
+.pnp.js
+
+# testing
+coverage/
+test-results/
+.test-tmp
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# internal sync
+.rewrite-tmp/
+*.timestamp-*
+
+# environment
+.env*.local
+
+#
+.master/
+
+*.sh
+*.session.sql
+.npmrc
+
+!.gitkeep

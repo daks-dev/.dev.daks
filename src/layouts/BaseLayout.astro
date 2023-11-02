@@ -1,0 +1,156 @@
+---
+import { slide, /*fade,*/ ViewTransitions } from 'astro:transitions';
+import twMerge from '$lib/tailwind';
+import MainHead from '$lib/components/MainHead.astro';
+import Nav from '$lib/components/Nav.astro';
+import Footer from '$lib/components/Footer.astro';
+
+interface Props {
+  class?: ClassName;
+  title?: string | undefined;
+  description?: string | undefined;
+}
+
+const { class: className, title, description } = Astro.props;
+
+/*
+const animate = {
+  old: {
+    name: 'fadeIn',
+    duration: '0.2s',
+    easing: 'linear',
+    fillMode: 'forwards'
+  },
+  new: {
+    name: 'fadeOut',
+    delay: '0.1.5s',
+    duration: '5.3s',
+    easing: 'linear',
+    fillMode: 'backwards'
+  }
+};
+
+const fade = {
+  forwards: animate,
+  backwards: animate
+};
+*/
+---
+
+<html
+  lang='en'
+  transition:animate='none'>
+  <head>
+    <MainHead
+      title={title}
+      description={description}
+    />
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class='backdrop flex min-h-screen flex-col'>
+      <Nav />
+      <div
+        class={twMerge('flex grow flex-col gap-20', className)}
+        transition:animate={slide({ duration: '.7s' })}>
+        <slot />
+      </div>
+      <Footer />
+    </div>
+
+    <script>
+      // Add “loaded” class once the document has completely loaded.
+      document.addEventListener('astro:page-load', () =>
+        setTimeout(() => document.documentElement.classList.add('loaded'), 75)
+      );
+      document.addEventListener('astro:after-swap', () =>
+        setTimeout(() => document.documentElement.classList.add('swapped'), 75)
+      );
+    </script>
+
+    <style>
+      :root {
+        --_placeholder-bg: linear-gradient(transparent, transparent);
+        --bg-image-main: url('/images/bg/light/main/800w.jpg');
+        --bg-image-main-curves: url('/images/bg/light/main/curves.svg');
+        --bg-image-subtle-0: var(--_placeholder-bg);
+        --bg-image-subtle-1: var(--_placeholder-bg);
+        --bg-image-footer: var(--_placeholder-bg);
+        --bg-svg-blend-mode: overlay;
+        --bg-blend-mode: darken;
+        --bg-image-aspect-ratio: 2.25;
+        --bg-scale: 1.68;
+        --bg-aspect-ratio: calc(var(--bg-image-aspect-ratio) / var(--bg-scale));
+        --bg-gradient-size: calc(var(--bg-scale) * 100%);
+      }
+
+      :root.theme-dark {
+        --bg-image-main: url('/images/bg/dark/main/800w.jpg');
+        --bg-image-main-curves: url('/images/bg/dark/main/curves.svg');
+        --bg-svg-blend-mode: darken;
+        --bg-blend-mode: lighten;
+      }
+
+      /* These backgrounds are displayed below the fold, so we lazy load them once the `.loaded` class has been set.  */
+      :root.loaded {
+        --bg-image-subtle-0: url('/images/bg/light/subtle/0/800w.jpg');
+        --bg-image-subtle-1: url('/images/bg/light/subtle/1/800w.jpg');
+        --bg-image-footer: url('/images/bg/light/footer/800w.jpg');
+      }
+
+      :root.loaded.theme-dark {
+        --bg-image-subtle-0: url('/images/bg/dark/subtle/0/800w.jpg');
+        --bg-image-subtle-1: url('/images/bg/dark/subtle/1/800w.jpg');
+        --bg-image-footer: url('/images/bg/dark/footer/800w.jpg');
+      }
+
+      @media (min-width: 50em) {
+        :root {
+          --bg-scale: 1;
+          --bg-image-main: url('/images/bg/light/main/1440w.jpg');
+        }
+        :root.theme-dark {
+          --bg-image-main: url('/images/bg/dark/main/1440w.jpg');
+        }
+        :root.loaded {
+          --bg-image-subtle-0: url('/images/bg/light/subtle/0/1440w.jpg');
+          --bg-image-subtle-1: url('/images/bg/light/subtle/1/1440w.jpg');
+          --bg-image-footer: url('/images/bg/light/footer/1440w.jpg');
+        }
+        :root.loaded.theme-dark {
+          --bg-image-subtle-0: url('/images/bg/dark/subtle/0/1440w.jpg');
+          --bg-image-subtle-1: url('/images/bg/dark/subtle/1/1440w.jpg');
+          --bg-image-footer: url('/images/bg/dark/footer/1440w.jpg');
+        }
+      }
+
+      .backdrop {
+        /* min-height: 100%; */
+        isolation: isolate;
+        background:
+          /*noise*/
+          url('/images/bg/noise.png') top center/220px repeat,
+          /*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+          /*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+          /*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+          /*base*/ var(--primary-950);
+        background-blend-mode:
+          /*noise*/
+          overlay,
+          /*footer*/ var(--bg-blend-mode),
+          /*header1*/ var(--bg-svg-blend-mode),
+          /*header2*/ normal,
+          /*base*/ normal;
+      }
+
+      @media (forced-colors: active) {
+        /* Deactivate custom backgrounds for high contrast users. */
+        .backgrounds {
+          background: none;
+          background-blend-mode: none;
+          --bg-gradient-size: none;
+        }
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,131 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "plugins": ["prettier", "unicorn"],
+  "settings": {
+    "mdx/code-blocks": true,
+    "mdx/remark": true,
+    "react": {
+      "version": "detect"
+    },
+    "tailwindcss": {
+      "callees": ["twMerge", "classnames", "clsx", "ctl"],
+      "config": "./tailwind.config.ts"
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.astro"],
+      "extends": ["plugin:astro/recommended"],
+      "plugins": ["astro"],
+      "parser": "astro-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".astro"]
+      },
+      "rules": {
+        "no-undef": "off"
+        // "astro/no-set-html-directive": "error"
+      }
+    },
+    {
+      "files": ["**/*.astro/*.{js,jsx,ts,tsx}"],
+      "rules": {
+        "no-undef": "off"
+        // "@typescript-eslint/no-explicit-any": "off"
+        // "prettier/prettier": "off"
+      }
+    },
+    {
+      "files": ["**/*.svelte"],
+      "extends": ["plugin:svelte/recommended"],
+      "plugins": ["svelte"],
+      "parser": "svelte-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".svelte"]
+      },
+      "rules": {
+        "no-undef": "off",
+        "svelte/no-at-html-tags": "off"
+        // "@typescript-eslint/no-explicit-any": "off"
+        // "prettier/prettier": "off"
+      }
+    },
+    {
+      "files": ["**/*.{md,mdx}"],
+      "extends": ["plugin:markdown/recommended"],
+      "plugins": ["markdown"],
+      "processor": "markdown/markdown"
+    },
+    {
+      "files": ["**/*.md/*.{js,jsx,ts,tsx,astro,react,svelte}"],
+      "parser": "@typescript-eslint/parser",
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+        // "no-console": "off"
+        // "@typescript-eslint/no-explicit-any": "off"
+        // "prettier/prettier": "off"
+      }
+    },
+    {
+      "files": ["**/*.{js,jsx,cjs,mjs,ts,tsx}"],
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended"
+      ],
+      "plugins": ["react", "react-hooks"],
+      "parser": "@typescript-eslint/parser",
+      "rules": {
+        // "react/jsx-uses-react": "error",
+        // "react/jsx-uses-vars": "error"
+      }
+    }
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": [
+      "warn",
+      {
+        "callees": ["twMerge", "classnames", "clsx", "ctl"],
+        "config": "./tailwind.config.ts"
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "**/.astro/",
+    "**/.svelte-kit/",
+    "**/build/",
+    "**/dist/",
+    "**/dist-ssr/",
+    "**/test-results/",
+    "**/public/",
+    "**/static/",
+    "**/.master/",
+    "**/.vscode/"
+  ]
+}

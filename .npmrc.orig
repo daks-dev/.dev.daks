@@ -1,0 +1,9 @@
+engine-strict = true
+resolution-mode = highest
+
+auto-install-peers = false
+strict-peer-dependencies = false
+legacy-peer-deps = true
+
+save-prefix = ""
+loglevel = info

@@ -1,0 +1,104 @@
+---
+import Icon from './Icon.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class:list={[
+    'flex flex-col gap-12 px-8 py-12 md:flex-row md:justify-between md:px-20 md:py-10',
+    'text-sm text-center text-light-400 dark:text-dark-400'
+  ]}>
+  <div class='flex flex-col items-center gap-2 md:flex-row md:flex-wrap md:gap-4'>
+    <p>
+      Designed & Developed in Moscow with <a href='https://astro.build/'>Astro</a>
+      <Icon
+        class='ms-2 inline-block'
+        icon='rocket-launch'
+        size='1.2em'
+      />
+    </p>
+    <p>&copy; {currentYear} DAKS.DEV</p>
+  </div>
+  <p class='flex flex-wrap justify-center gap-4 md:justify-end'>
+    <a
+      href='https://twitter.com'
+      target='_blank'>
+      Twitter
+    </a>
+    <a
+      href='https://github.com'
+      target='_blank'>
+      GitHub
+    </a>
+    <a
+      href='https://codepen.io'
+      target='_blank'>
+      CodePen
+    </a>
+  </p>
+</footer>
+
+<style lang="postcss">
+  a {
+    @apply text-light-400 dark:text-dark-400
+           underline decoration-transparent underline-offset-4 oversee:decoration-current
+           transition-colors duration-500;
+  }
+</style>
+
+{
+  /*
+<style>
+  footer {
+    display: flex;
+    padding: 3rem 2rem;
+    color: var(--primary-400);
+    font-size: var(--text-sm);
+    text-align: center;
+    flex-direction: column;
+    gap: 3rem;
+    margin-top: auto;
+  }
+
+  footer a {
+    color: var(--primary-400);
+    text-decoration: 1px solid underline transparent;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color var(--theme-transition);
+  }
+
+  footer a:hover,
+  footer a:focus {
+    text-decoration-color: currentcolor;
+  }
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 50em) {
+    footer {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 2.5rem 5rem;
+    }
+    .group {
+      flex-flow: row wrap;
+      gap: 1rem;
+    }
+    .socials {
+      justify-content: flex-end;
+    }
+  }
+</style>
+  */
+}
