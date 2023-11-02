@@ -1,5 +1,5 @@
 ---
-import { /*slide,*/ fade, ViewTransitions } from 'astro:transitions';
+import { /*slide, fade,*/ ViewTransitions } from 'astro:transitions';
 import twMerge from '$lib/tailwind';
 import Head from '@/lib/components/Head.astro';
 import Nav from '$lib/components/Nav.astro';
@@ -29,18 +29,19 @@ const animate = {
     fillMode: 'backwards'
   }
 };
-
 const fade = {
   forwards: animate,
   backwards: animate
 };
 */
+
+// transition:animate='none'
+// transition:animate={fade({ duration: '0.5s' })}
 ---
 
 <html
   lang='en'
-  class='theme-dark'
-  transition:animate='none'>
+  class='theme-dark'>
   <head>
     <Head
       title={title}
@@ -51,16 +52,13 @@ const fade = {
   <body>
     <div class='backdrop flex min-h-screen flex-col'>
       <Nav />
-      <div
-        class={twMerge('flex grow flex-col gap-20', className)}
-        transition:animate={fade({ duration: '0.7s' })}>
+      <div class={twMerge('flex grow flex-col gap-20', className)}>
         <slot />
       </div>
       <Footer />
     </div>
 
     <script>
-      // Add “loaded” class once the document has completely loaded.
       document.addEventListener('astro:page-load', () =>
         setTimeout(() => document.documentElement.classList.add('loaded'), 75)
       );
@@ -71,12 +69,13 @@ const fade = {
 
     <style>
       :root {
-        --_placeholder-bg: linear-gradient(transparent, transparent);
+        --bg-color: #ffffff;
+        --bg-placeholder: linear-gradient(transparent, transparent);
         --bg-image-main: url('/images/bg/light/main/800w.jpg');
         --bg-image-main-curves: url('/images/bg/light/main/curves.svg');
-        --bg-image-subtle-0: var(--_placeholder-bg);
-        --bg-image-subtle-1: var(--_placeholder-bg);
-        --bg-image-footer: var(--_placeholder-bg);
+        --bg-image-subtle-0: var(--bg-placeholder);
+        --bg-image-subtle-1: var(--bg-placeholder);
+        --bg-image-footer: var(--bg-placeholder);
         --bg-svg-blend-mode: overlay;
         --bg-blend-mode: darken;
         --bg-image-aspect-ratio: 2.25;
@@ -86,6 +85,7 @@ const fade = {
       }
 
       :root.theme-dark {
+        --bg-color: #090b11;
         --bg-image-main: url('/images/bg/dark/main/800w.jpg');
         --bg-image-main-curves: url('/images/bg/dark/main/curves.svg');
         --bg-svg-blend-mode: darken;
@@ -134,7 +134,7 @@ const fade = {
           /*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
           /*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
           /*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-          /*base*/ var(--primary-950);
+          /*base*/ var(--bg-color);
         background-blend-mode:
           /*noise*/
           overlay,

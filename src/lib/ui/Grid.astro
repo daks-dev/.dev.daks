@@ -9,76 +9,20 @@ const { variant } = Astro.props;
 <ul
   class:list={[
     'grid list-none auto-rows-fr gap-4 p-0',
-    'md:grid-cols-2 md:gap-16',
+    'bp:grid-cols-2 bp:gap-16',
     variant === 'small'
       ? [
           'grid-cols-2 gap-6',
           '[&_>_*]:basis-80',
           '[&_>_:last-child:nth-child(odd)]:col-[1_/_3]',
-          'md:flex md:flex-wrap md:justify-center md:gap-8'
+          'bp:flex bp:flex-wrap bp:justify-center bp:gap-8'
         ]
       : [
-          'md:pb-32',
-          'md:[&_>_:nth-child(odd)]:translate-y-32',
-          'md:[&_>_:last-child:nth-child(odd)]:transform-none',
-          'md:[&_>_:last-child:nth-child(odd)]:col-[2_/_3]'
+          'bp:pb-32',
+          'bp:[&_>_:nth-child(odd)]:translate-y-32',
+          'bp:[&_>_:last-child:nth-child(odd)]:transform-none',
+          'bp:[&_>_:last-child:nth-child(odd)]:col-[2_/_3]'
         ]
   ]}>
   <slot />
 </ul>
-
-{
-  /*
-<style>
-  .grid {
-    display: grid;
-    grid-auto-rows: 1fr;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-  }
-
-  .grid.small {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-    If last row contains only one item, make it span both columns.
-  .grid.small > :global(:last-child:nth-child(odd)) {
-    grid-column: 1 / 3;
-  }
-
-  @media (min-width: 50em) {
-    .grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-    .grid.offset {
-      --row-offset: 7.5rem;
-
-      padding-bottom: var(--row-offset);
-    }
-
-      Shift first item in each row vertically to create staggered effect.
-    .grid.offset > :global(:nth-child(odd)) {
-      transform: translateY(var(--row-offset));
-    }
-
-      If last row contains only one item, display it in the second column.
-    .grid.offset > :global(:last-child:nth-child(odd)) {
-      grid-column: 2 / 3;
-      transform: none;
-    }
-    .grid.small {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .grid.small > :global(*) {
-      flex-basis: 20rem;
-    }
-  }
-</style>
-  */
-}

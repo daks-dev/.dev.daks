@@ -1,0 +1,103 @@
+:root {
+  /* slate */
+  --primary: #020617;
+  --primary-50: #0f172a;
+  --primary-100: #1e293b;
+  --primary-200: #334155;
+  --primary-300: #475569;
+  --primary-400: #64748b;
+  --primary-500: #94a3b8;
+  --primary-600: #cbd5e1;
+  --primary-700: #e2e8f0;
+  --primary-800: #f1f5f9;
+  --primary-900: #f8fafc;
+  --primary-950: #fff;
+
+  --impact: #7611a6;
+  --impact-light: #c561f6;
+  --impact-dark: #1c0056;
+  --impact-overlay: #c460f654;
+  --impact-subtle-overlay: var(--impact-overlay);
+  --impact-text-over: var(--primary-950);
+
+  --link-color: var(--impact);
+
+  --gradient-from: var(--impact-light);
+  --gradient-via: var(--impact);
+  --gradient-to: var(--impact-dark);
+
+  --gradient-impact: linear-gradient(
+    150deg,
+    var(--gradient-from),
+    var(--gradient-via),
+    var(--gradient-to)
+  );
+  --gradient-impact-orange: linear-gradient(
+    150deg,
+    #ca7879,
+    var(--gradient-via),
+    var(--gradient-to)
+  );
+
+  --gradient-stroke: linear-gradient(180deg, var(--primary-900), var(--primary-700));
+  --gradient-subtle: linear-gradient(150deg, var(--primary-900) 19%, var(--primary-950) 150%);
+
+  --gradient-menu-items: radial-gradient(var(--primary-900), var(--primary-800) 150%);
+  --gradient-menu-toogle: radial-gradient(var(--primary-900), var(--primary-800) 150%);
+  --gradient-menu-toogle-expanded: linear-gradient(180deg, var(--primary-600), transparent),
+    radial-gradient(var(--primary-900), var(--primary-800) 150%);
+
+  --shadow-sm: 0px 6px 3px rgb(9 11 17 / 1%), 0px 4px 2px #090b1103, 0px 2px 2px rgb(9 11 17 / 2%),
+    0px 0px 1px rgb(9 11 17 / 3%);
+  --shadow-md: 0px 28px 11px rgb(9 11 17 / 1%), 0px 16px 10px rgb(9 11 17 / 3%),
+    0px 7px 7px rgb(9 11 17 / 5%), 0px 2px 4px rgb(9 11 17 / 6%);
+  --shadow-lg: 0px 62px 25px rgb(9 11 17 / 1%), 0px 35px 21px rgb(9 11 17 / 5%),
+    0px 16px 16px rgb(9 11 17 / 10%), 0px 4px 9px rgb(9 11 17 / 12%);
+
+  --shadow-toggle-theme: inset 0 0 0 1px var(--impact-overlay);
+
+  --text-lg: 1.125rem; /* text-lg 1.125rem */
+  --text-xl: 1.25rem; /* text-xl 1.25rem */
+  --text-3xl: 1.625rem; /* text-4xl 1.875rem */
+  --text-4xl: 2.125rem; /* text-4xl 2.25rem */
+  --text-5xl: 2.625rem; /* text-5xl 3rem */
+  --text-6xl: 3.5rem; /* text-6xl 3.75rem */
+  --text-7xl: 4.5rem; /* text-7xl 4.5rem */
+
+  --theme-transition: 0.2s ease-in-out;
+}
+
+:root.theme-dark {
+  /* slate */
+  --primary: #fff;
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-200: #e2e8f0;
+  --primary-300: #cbd5e1;
+  --primary-400: #94a3b8;
+  --primary-500: #64748b;
+  --primary-600: #475569;
+  --primary-700: #334155;
+  --primary-800: #1e293b;
+  --primary-900: #0f172a;
+  --primary-950: #020617;
+
+  --impact-light: #1c0056;
+  --impact-dark: #c561f6;
+  --impact-overlay: #c460f680;
+  --impact-text-over: var(--primary);
+
+  --link-color: var(--impact-dark);
+
+  --gradient-from: #4c11c6;
+
+  --gradient-stroke: linear-gradient(180deg, var(--primary-600), var(--primary-800));
+  --gradient-subtle: linear-gradient(150deg, var(--primary-900) 19%, var(--primary-950) 81%);
+
+  --shadow-sm: 0px 6px 3px rgb(255 255 255 / 1%), 0px 4px 2px rgb(255 255 255 / 1%),
+    0px 2px 2px rgb(255 255 255 / 2%), 0px 0px 1px rgb(255 255 255 / 3%);
+  --shadow-md: 0px 28px 11px rgb(255 255 255 / 1%), 0px 16px 10px rgb(255 255 255 / 3%),
+    0px 7px 7px rgb(255 255 255 / 5%), 0px 2px 4px rgb(255 255 255 / 6%);
+  --shadow-lg: 0px 62px 25px rgb(255 255 255 / 1%), 0px 35px 21px rgb(255 255 255 / 5%),
+    0px 16px 16px rgb(255 255 255 / 10%), 0px 4px 9px rgb(255 255 255 / 12%);
+}

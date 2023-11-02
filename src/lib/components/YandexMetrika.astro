@@ -1,0 +1,75 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'script'> & {
+  counter: number | string;
+  clickmap?: boolean;
+  trackLinks?: boolean;
+  accurateTrackBounce?: boolean;
+  trackHash?: boolean;
+  webvisor?: boolean;
+};
+const {
+  counter,
+  clickmap = true,
+  trackLinks = true,
+  accurateTrackBounce = true,
+  trackHash = true,
+  webvisor,
+  ...props
+} = Astro.props;
+
+const options = JSON.stringify({ clickmap, trackLinks, accurateTrackBounce, trackHash, webvisor });
+---
+
+<script
+  is='app-yandex-metrika'
+  data-counter={counter}
+  data-options={options}
+  {...props}
+></script>
+
+<script>
+  declare const ym: (...x: unknown[]) => void;
+
+  class AppYandexMetrika extends HTMLScriptElement {
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.init();
+    }
+
+    get counter() {
+      const counter = this.dataset.counter ? parseInt(this.dataset.counter) : NaN;
+      return isNaN(counter) ? 0 : counter;
+    }
+
+    get options() {
+      return this.dataset.options ? JSON.parse(this.dataset.options) : {};
+    }
+
+    init = () => {
+      if (this.counter) {
+        // TODO: no explicit any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ((w: any, y) => {
+          w[y] = (...rest: unknown[]) => (w[y].a = w[y].a || []).push(rest);
+          w[y].l = Number(new Date());
+        })(window, 'ym');
+        const src = `https://mc.yandex.ru/metrika/tag.js`;
+        if (!document.head.querySelector(`script[src="${src}"]`)) {
+          const el = document.createElement('script');
+          el.src = src;
+          el.async = true;
+          if (this.type) el.type = this.type;
+          el.addEventListener('load', () => ym(this.counter, 'init', this.options), { once: true });
+          document.head.appendChild(el);
+        }
+      }
+    };
+  }
+
+  customElements.define('app-yandex-metrika', AppYandexMetrika, { extends: 'script' });
+</script>

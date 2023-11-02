@@ -28,16 +28,17 @@ const current = (href: string) =>
 <nav
   class:list={[
     'relative z-50 mb-6',
-    'font-brand font-medium',
-    'md:px-20 md:py-10',
-    'md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-4'
+    // 'font-brand',
+    'font-medium',
+    'bp:px-20 bp:py-10',
+    'bp:grid bp:grid-cols-[1fr_auto_1fr] bp:items-center bp:gap-4'
   ]}>
-  <div class:list={['p-6 md:p-0', 'flex justify-between gap-2', 'menu-header']}>
+  <div class:list={['p-6 bp:p-0', 'flex justify-between gap-2', 'menu-header']}>
     <a
       class:list={[
         'flex items-center gap-2',
         'leading-tight text-light no-underline dark:text-dark',
-        'md:text-lg',
+        'bp:text-xl',
         'site-title'
       ]}
       href='/'>
@@ -58,7 +59,7 @@ const current = (href: string) =>
             'rounded-full border-0 bg-gradient-menu-toogle shadow-md',
             'aria-expanded:bg-gradient-menu-toogle-expanded aria-expanded:text-light dark:aria-expanded:text-dark',
             'before:absolute before:-inset-px before:-z-10 before:rounded-full before:bg-gradient-stroke before:content-null',
-            'md:hidden',
+            'bp:hidden',
             'menu-button'
           ]}
           aria-expanded='false'>
@@ -118,15 +119,15 @@ const current = (href: string) =>
       class:list={[
         'm-0 p-8',
         'flex list-none flex-col gap-4',
-        'text-md leading-snug',
+        'text-lg leading-snug',
         'border border-light-800 bg-light-950 dark:border-dark-800 dark:bg-dark-950',
-        'md:relative md:px-2.5 md:py-2',
-        'md:flex-row',
-        'md:text-sm',
-        'md:rounded-full md:border-0 md:bg-gradient-menu-items md:shadow-md',
-        'md:before:content-null',
-        'md:before:absolute md:before:-inset-px md:before:-z-10',
-        'md:before:rounded-full md:before:bg-gradient-stroke md:before:content-null',
+        'bp:relative bp:px-2.5 bp:py-2',
+        'bp:flex-row',
+        'bp:text-sm',
+        'bp:rounded-full bp:border-0 bp:bg-gradient-menu-items bp:shadow-md',
+        'bp:before:content-null',
+        'bp:before:absolute bp:before:-inset-px bp:before:-z-10',
+        'bp:before:rounded-full bp:before:bg-gradient-stroke bp:before:content-null',
         'nav-items'
       ]}>
       {
@@ -155,13 +156,13 @@ const current = (href: string) =>
         'py-6 pl-6 pr-8',
         'flex justify-between gap-3',
         'rounded-b-xl rounded-t-none bg-light-950 shadow-lg dark:bg-dark-950',
-        'md:items-center md:justify-self-end md:bg-transparent md:p-0 md:shadow-none dark:md:bg-transparent',
+        'bp:items-center bp:justify-self-end bp:bg-transparent bp:p-0 bp:shadow-none dark:bp:bg-transparent',
         'menu-footer'
       ]}>
       <div
         class:list={[
           'flex flex-wrap gap-2.5',
-          'md:hidden xl:flex xl:justify-end xl:gap-0',
+          'xl:flex xl:justify-end xl:gap-0 bp:hidden',
           'socials'
         ]}>
         {
@@ -227,10 +228,10 @@ const current = (href: string) =>
   .link {
     @apply inline-block
            text-light-300 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
-           md:py-2 md:px-4 md:rounded-full
-           md:ready:transition-colors md:ready:duration-200
-           md:oversee:text-light-100 dark:md:oversee:text-dark-100 md:oversee:bg-impact-subtle-overlay
-           md:aria-[current]:bg-impact md:aria-[current]:text-impact-text-over
+           bp:py-2 bp:px-4 bp:rounded-full
+           bp:ready:transition-colors bp:ready:duration-200
+           bp:oversee:text-light-100 dark:bp:oversee:text-dark-100 bp:oversee:bg-impact-subtle-overlay
+           bp:aria-[current]:bg-impact bp:aria-[current]:text-impact-text-over
            forced-colors:text-selected;
   }
 
@@ -241,6 +242,6 @@ const current = (href: string) =>
   }
 
   .menu-content {
-    @apply absolute inset-x-0 md:contents;
+    @apply absolute inset-x-0 bp:contents;
   }
 </style>

@@ -11,15 +11,15 @@ const { align = 'center', tagline, title } = Astro.props;
 <div
   class:list={[
     'flex flex-col gap-4',
-    'text-center text-lg md:text-xl',
-    align === 'start' && 'md:text-start'
+    'text-center text-xl bp:text-2xl',
+    align === 'start' && 'bp:text-start'
   ]}>
   <div class='flex flex-col gap-2'>
     <h1
       class:list={[
-        'me-auto ms-auto max-w-[37ch]',
-        'text-2xl text-light dark:text-dark sm:text-3xl md:text-5xl',
-        align === 'start' && 'md:me-auto md:ms-auto'
+        'mx-auto mb-4 max-w-[37ch]',
+        'bp:text-7xl text-4xl text-light dark:text-dark sm:text-5xl',
+        align === 'start' && 'bp:mx-unset'
       ]}>
       <slot name='title'>
         <Fragment set:html={title} />
@@ -28,10 +28,7 @@ const { align = 'center', tagline, title } = Astro.props;
     {
       tagline && (
         <p
-          class:list={[
-            'me-auto ms-auto max-w-[37ch]',
-            align === 'start' && 'md:[margin-inline:unset]'
-          ]}
+          class:list={['mx-auto mb-2 max-w-[37ch]', align === 'start' && 'bp:mx-0']}
           set:html={tagline}
         />
       )
@@ -39,41 +36,3 @@ const { align = 'center', tagline, title } = Astro.props;
   </div>
   <slot />
 </div>
-
-{
-  /*
-<style>
-  .hero {
-    font-size: var(--text-lg);
-    text-align: center;
-  }
-
-  .title,
-  .tagline {
-    max-width: 37ch;
-    margin-inline: auto;
-  }
-
-  .title {
-    color: var(--primary);
-    font-size: var(--text-3xl);
-  }
-
-  @media (min-width: 50em) {
-    .hero {
-      font-size: var(--text-xl);
-    }
-    .start {
-      text-align: start;
-    }
-    .title {
-      font-size: var(--text-5xl);
-    }
-    .start .title,
-    .start .tagline {
-      margin-inline: unset;
-    }
-  }
-</style>
-  */
-}

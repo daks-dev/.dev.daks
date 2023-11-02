@@ -25,8 +25,8 @@ const projects = (await getCollection('work'))
 // https://docs.astro.build/core-concepts/astro-components/
 ---
 
-<BaseLayout class='md:gap-48'>
-  <div class='wrapper stack gap-8 lg:gap-20'>
+<BaseLayout class='bp:gap-48'>
+  <div class='wrapper flex flex-col gap-8 lg:gap-20'>
     <header class='hero'>
       <Hero
         title='Hello, my name is DAKS DEV'
@@ -69,9 +69,9 @@ const projects = (await getCollection('work'))
     <Skills />
   </div>
 
-  <main class='wrapper stack gap-20 lg:gap-48'>
+  <main class='wrapper flex flex-col gap-20 lg:gap-48'>
     <section class='section with-background with-cta'>
-      <header class='section-header stack gap-2 lg:gap-4'>
+      <header class='section-header flex flex-col gap-2 lg:gap-4'>
         <h3>Selected Work</h3>
         <p>Take a look below at some of my featured work for clients from the past few years.</p>
       </header>
@@ -100,7 +100,7 @@ const projects = (await getCollection('work'))
     </section>
 
     <section class='section with-background bg-variant'>
-      <header class='section-header stack gap-2 lg:gap-4'>
+      <header class='section-header flex flex-col gap-2 lg:gap-4'>
         <h3>Mentions</h3>
         <p>
           I have been fortunate enough to receive praise for my work in several publications. Take a
@@ -125,8 +125,10 @@ const projects = (await getCollection('work'))
   <ContactCTA />
 </BaseLayout>
 
-<style>
+<style lang="postcss">
+
   .hero {
+    @apply flex flex-col items-center gap-8;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -199,14 +201,14 @@ const projects = (await getCollection('work'))
 
   .section-header {
     color: var(--primary-300);
-    font-size: var(--text-md);
+    font-size: var(--text-lg);
     text-align: center;
     justify-self: center;
     max-width: 50ch;
   }
 
   .section-header h3 {
-    font-size: var(--text-2xl);
+    font-size: var(--text-4xl);
   }
 
   @media (min-width: 50em) {
@@ -220,10 +222,10 @@ const projects = (await getCollection('work'))
     }
     .section-header {
       grid-area: header;
-      font-size: var(--text-lg);
+      font-size: var(--text-xl);
     }
     .section-header h3 {
-      font-size: var(--text-4xl);
+      font-size: var(--text-6xl);
     }
     .with-cta .section-header {
       justify-self: flex-start;

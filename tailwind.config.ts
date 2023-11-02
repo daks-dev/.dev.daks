@@ -1,3 +1,4 @@
+// import defaultTheme from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
 import colors from 'tailwindcss/colors';
 import type { Config } from 'tailwindcss';
@@ -10,20 +11,6 @@ const variants = plugin(({ addVariant }) => {
   addVariant('oversee', ['&:where(:hover, :focus)']);
   addVariant('forced-colors', '@media (forced-colors: active)');
 });
-
-const system = [
-  'system-ui',
-  '-apple-system',
-  'blinkmacsystemfont',
-  '"Segoe UI"',
-  'roboto',
-  'oxygen',
-  'ubuntu',
-  'cantarell',
-  '"Open Sans"',
-  '"Helvetica Neue"',
-  'sans-serif'
-];
 
 type Color = { [x: string]: string };
 const reverse = (color: Color) =>
@@ -97,15 +84,6 @@ export default {
       current: 'currentColor',
       selected: 'SelectedItem'
     },
-    fontSize: {
-      md: '1.125rem',
-      lg: '1.25rem',
-      xl: '1.625rem',
-      '2xl': '2.125rem',
-      '3xl': '2.625rem',
-      '4xl': '3.5rem',
-      '5xl': '4.5rem'
-    },
     backgroundImage: {
       'gradient-impact': 'var(--gradient-impact)',
       'gradient-impact-orange': 'var(--gradient-impact-orange)',
@@ -123,17 +101,15 @@ export default {
       'toggle-theme': 'var(--shadow-toggle-theme)'
     },
     extend: {
+      container: {
+        center: true
+      },
       screens: {
-        md: '800px'
+        bp: '50em' // defaultTheme.screens.md
       },
-      fontFamily: {
-        system,
-        body: ['Public Sans', ...system],
-        brand: ['rubik', ...system]
-      },
-      lineHeight: {
-        tight: '1.1',
-        snug: '1.2'
+      spacing: {
+        inherit: 'inherit',
+        unset: 'unset'
       },
       content: {
         null: '""'

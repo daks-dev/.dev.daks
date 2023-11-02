@@ -10,19 +10,21 @@ const { data, slug } = Astro.props.project;
 
 <a
   class:list={[
-    'grid h-44 grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden md:h-[22rem]',
-    'font-brand text-lg no-underline',
-    'rounded-xl border border-light-800 bg-gradient-subtle dark:border-dark-800 md:rounded-3xl',
+    'grid h-44 grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden bp:h-[22rem]',
+    // 'font-brand',
+    'text-xl no-underline',
+    'rounded-xl border border-light-800 bg-gradient-subtle dark:border-dark-800 bp:rounded-3xl',
     'shadow-sm hover:shadow-md',
     'transition-shadow duration-200'
   ]}
-  href={`/work/${slug}`}>
+  href={`/work/${slug}`}
+  rel='prefetch'>
   <span
     class:list={[
       'z-10 m-2 px-4 pb-2.5 pt-2',
       'col-start-1 col-end-2 row-start-1 row-end-2',
-      'text-lg text-light-200 dark:text-dark-200',
-      'rounded-md bg-light-950 dark:bg-dark-950 md:rounded-2xl'
+      'text-xl text-light-200 dark:text-dark-200',
+      'rounded-md bg-light-950 dark:bg-dark-950 bp:rounded-2xl'
     ]}>
     {data.title}
   </span>

@@ -9,10 +9,10 @@ const { href } = Astro.props;
 <a
   class:list={[
     'relative flex place-content-center gap-3 overflow-hidden',
-    'px-8 py-2 md:px-10 md:py-5',
+    'px-8 py-2 bp:px-10 bp:py-5',
     'rounded-full bg-gradient-impact-orange shadow-md',
     'whitespace-nowrap text-center leading-tight no-underline',
-    'text-lg text-impact-text-over md:text-xl',
+    'text-xl text-impact-text-over bp:text-3xl',
     'oversee:after:bg-light-950/30 dark:oversee:after:bg-dark-950/30',
     'after:absolute after:inset-0',
     'after:mix-blend-overlay after:content-null',
@@ -22,53 +22,3 @@ const { href } = Astro.props;
   href={href}>
   <slot />
 </a>
-
-{
-  /*
-<style>
-  a {
-    position: relative;
-    display: flex;
-    place-content: center;
-    text-align: center;
-    padding: 0.56em 2em;
-    gap: 0.8em;
-    color: var(--impact-text-over);
-    text-decoration: none;
-    line-height: 1.1;
-    border-radius: 999rem;
-    overflow: hidden;
-    background: var(--gradient-impact-orange);
-    box-shadow: var(--shadow-md);
-    white-space: nowrap;
-  }
-
-  @media (min-width: 20em) {
-    a {
-      font-size: var(--text-lg);
-    }
-  }
-
-  a::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    transition: background-color var(--theme-transition);
-    mix-blend-mode: overlay;
-  }
-
-  a:focus::after,
-  a:hover::after {
-    background-color: hsla(var(--primary-950-basis), 0.3);
-  }
-
-  @media (min-width: 50em) {
-    a {
-      padding: 1.125rem 2.5rem;
-      font-size: var(--text-xl);
-    }
-  }
-</style>
-  */
-}
