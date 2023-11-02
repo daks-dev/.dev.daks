@@ -2,9 +2,9 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ContactCTA from '$lib/components/ContactCTA.astro';
-import Hero from '$lib/components/Hero.astro';
-import Icon from '$lib/components/Icon.astro';
-import Pill from '$lib/components/Pill.astro';
+import Icon from '$lib/icons/Icon.astro';
+import Hero from '$lib/ui/Hero.astro';
+import Pill from '$lib/ui/Pill.astro';
 
 interface Props {
   entry: CollectionEntry<'work'>;

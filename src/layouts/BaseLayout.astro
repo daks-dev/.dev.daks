@@ -1,7 +1,7 @@
 ---
-import { slide, /*fade,*/ ViewTransitions } from 'astro:transitions';
+import { /*slide,*/ fade, ViewTransitions } from 'astro:transitions';
 import twMerge from '$lib/tailwind';
-import MainHead from '$lib/components/MainHead.astro';
+import Head from '@/lib/components/Head.astro';
 import Nav from '$lib/components/Nav.astro';
 import Footer from '$lib/components/Footer.astro';
 
@@ -39,9 +39,10 @@ const fade = {
 
 <html
   lang='en'
+  class='theme-dark'
   transition:animate='none'>
   <head>
-    <MainHead
+    <Head
       title={title}
       description={description}
     />
@@ -52,7 +53,7 @@ const fade = {
       <Nav />
       <div
         class={twMerge('flex grow flex-col gap-20', className)}
-        transition:animate={slide({ duration: '.7s' })}>
+        transition:animate={fade({ duration: '0.7s' })}>
         <slot />
       </div>
       <Footer />

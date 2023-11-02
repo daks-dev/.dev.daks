@@ -1,5 +1,6 @@
 ---
-import Icon from './Icon.astro';
+import Icon from '$lib/icons/Icon.astro';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -45,60 +46,3 @@ const currentYear = new Date().getFullYear();
            transition-colors duration-500;
   }
 </style>
-
-{
-  /*
-<style>
-  footer {
-    display: flex;
-    padding: 3rem 2rem;
-    color: var(--primary-400);
-    font-size: var(--text-sm);
-    text-align: center;
-    flex-direction: column;
-    gap: 3rem;
-    margin-top: auto;
-  }
-
-  footer a {
-    color: var(--primary-400);
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
-  }
-
-  footer a:hover,
-  footer a:focus {
-    text-decoration-color: currentcolor;
-  }
-
-  .group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .socials {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  @media (min-width: 50em) {
-    footer {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 2.5rem 5rem;
-    }
-    .group {
-      flex-flow: row wrap;
-      gap: 1rem;
-    }
-    .socials {
-      justify-content: flex-end;
-    }
-  }
-</style>
-  */
-}

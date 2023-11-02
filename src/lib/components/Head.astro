@@ -1,0 +1,61 @@
+---
+import '@/styles/global.css';
+
+interface Props {
+  title?: string | undefined;
+  description?: string | undefined;
+}
+
+const { title = 'DAKS.DEV: Personal Site', description = 'The personal site of DAKS.DEV' } =
+  Astro.props;
+
+// : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+---
+
+<meta charset='UTF-8' />
+<meta
+  name='description'
+  property='og:description'
+  content={description}
+/>
+<meta
+  name='viewport'
+  content='width=device-width'
+/>
+<meta
+  name='generator'
+  content={Astro.generator}
+/>
+<title>{title}</title>
+
+<link
+  rel='icon'
+  type='image/svg+xml'
+  href='/favicon.svg'
+/>
+<link
+  rel='preconnect'
+  href='https://fonts.googleapis.com'
+/>
+<link
+  rel='preconnect'
+  href='https://fonts.gstatic.com'
+  crossorigin
+/>
+<link
+  href='https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap'
+  rel='stylesheet'
+/>
+
+<script is:inline>
+  ((e, l, i, c) => {
+    const get = () => (l?.getItem(i) ? l.getItem(i) : e.classList.contains(c) ? 'dark' : 'light');
+    const set = () => e.classList[get() === 'dark' ? 'add' : 'remove'](c);
+    const observer = new MutationObserver(() =>
+      l.setItem(i, e.classList.contains(c) ? 'dark' : 'light')
+    );
+    observer.observe(e, { attributes: true, attributeFilter: ['class'] });
+    set();
+    document.addEventListener('astro:after-swap', set);
+  })(document.documentElement, localStorage, 'theme', 'theme-dark');
+</script>

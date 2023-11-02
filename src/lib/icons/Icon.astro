@@ -1,10 +1,10 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 import twMerge from '$lib/tailwind';
-import iconPaths from './icon-paths';
+import bundle from './bundle';
 
 interface Props extends Omit<HTMLAttributes<'svg'>, 'class'> {
-  icon: keyof typeof iconPaths;
+  icon: keyof typeof bundle;
   class?: ClassName;
   color?: string;
   gradient?: boolean;
@@ -19,7 +19,7 @@ const {
   size = '1em',
   ...props
 } = Astro.props;
-const iconPath = iconPaths[icon];
+const iconPath = bundle[icon];
 
 const gradientId = `_${Math.floor((1 + Math.random()) * 0x1000)
   .toString(16)

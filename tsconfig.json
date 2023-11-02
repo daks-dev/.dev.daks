@@ -20,13 +20,14 @@
     }
   },
   "include": [
-    "astro.config.ts",
+    "*.ts",
     "src/**/*.js",
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.astro",
-    "src/**/*.svelte"
+    "src/**/*.svelte",
+    "astro.config.ts"
   ],
   "exclude": ["node_modules/**"]
 }

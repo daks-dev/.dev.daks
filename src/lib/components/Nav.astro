@@ -1,17 +1,14 @@
 ---
-import Icon from './Icon.astro';
+import { Icon, type IconKeys } from '$lib/icons';
 import ThemeToggle from './ThemeToggle.astro';
-import type iconPaths from './icon-paths';
 
-/** Main menu items */
 const textLinks: { label: string; href: string }[] = [
   { label: 'Home', href: '/' },
   { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' }
 ];
 
-/** Icon links to social media — edit these with links to your profiles! */
-const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
+const iconLinks: { label: string; href: string; icon: IconKeys }[] = [
   { label: 'Twitter', href: 'https://twitter.com', icon: 'twitter-logo' },
   { label: 'Twitch', href: 'https://twitch.tv', icon: 'twitch-logo' },
   { label: 'GitHub', href: 'https://github.com', icon: 'github-logo' },
@@ -145,6 +142,7 @@ const current = (href: string) =>
                 }
               ]}
               href={href}
+              rel='prefetch'
               aria-current={current(href)}>
               {label}
             </a>
@@ -245,206 +243,4 @@ const current = (href: string) =>
   .menu-content {
     @apply absolute inset-x-0 md:contents;
   }
-
-  /*nav {
-    position: relative;
-    z-index: 9999;
-    font-family: var(--font-brand);
-    font-weight: 500;
-    margin-bottom: 3.5rem;
-  }
-
-  .menu-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 1.5rem;
-  }
-
-  .site-title {
-    display: flex;
-    color: var(--primary);
-    line-height: 1.1;
-    text-decoration: none;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .menu-button {
-    position: relative;
-    display: flex;
-    padding: 0.5rem;
-    background: radial-gradient(var(--primary-900), var(--primary-800) 150%);
-    border: 0;
-    border-radius: 999rem;
-    color: var(--primary-300);
-    font-size: 1.5rem;
-    box-shadow: var(--shadow-md);
-  }
-  .menu-button[aria-expanded='true'] {
-    background: linear-gradient(180deg, var(--primary-600), transparent),
-      radial-gradient(var(--primary-900), var(--primary-800) 150%);
-    color: var(--primary);
-  }
-  .menu-button[hidden] {
-    display: none;
-  }
-
-  .menu-button::before {
-    position: absolute;
-    z-index: -1;
-    background: var(--gradient-stroke);
-    border-radius: 999rem;
-    inset: -1px;
-    content: '';
-  }
-
-  .menu-content {
-    position: absolute;
-    right: 0;
-    left: 0;
-  }
-
-  .nav-items {
-    display: flex;
-    margin: 0;
-    padding: 2rem;
-    background-color: var(--primary-950);
-    font-size: var(--text-md);
-    line-height: 1.2;
-    flex-direction: column;
-    gap: 1rem;
-    list-style: none;
-    border-bottom: 1px solid var(--primary-800);
-  }
-
-  .link {
-    display: inline-block;
-    color: var(--primary-300);
-    text-decoration: none;
-  }
-  .link.active {
-    color: var(--primary);
-  }
-
-  .menu-footer {
-    --icon-size: var(--text-xl);
-    --icon-padding: 0.5rem;
-
-    @apply py-6 pr-8 pl-6 flex justify-between gap-3 bg-light-950 dark:bg-dark-950 rounded-t-none rounded-b-xl shadow-lg;
-    display: flex;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 1.5rem 2rem 1.5rem 1.5rem;
-    background-color: var(--primary-950);
-    border-radius: 0 0 0.75rem 0.75rem;
-    box-shadow: var(--shadow-lg);
-  }
-
-  .socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.625rem;
-    font-size: var(--icon-size);
-  }
-
-  .social {
-    display: flex;
-    padding: var(--icon-padding);
-    color: var(--impact-dark);
-    text-decoration: none;
-    transition: color var(--theme-transition);
-  }
-
-  .social:hover,
-  .social:focus {
-    color: var(--impact-text-over);
-  }
-
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    height: calc(var(--icon-size) + 2 * var(--icon-padding));
-  }*/
-
-  @media (min-width: 50em) {
-    /*nav {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 2.5rem 5rem;
-      gap: 1rem;
-    }
-    .menu-header {
-      padding: 0;
-    }
-    .site-title {
-      font-size: var(--text-lg);
-    }
-    .menu-content {
-      display: contents;
-    }
-    .nav-items {
-      @apply md:relative md:py-2 md:px-2.5 md:flex-row md:bg-gradient-menu-items md:border-0 md:rounded-full md:text-sm md:shadow-md;
-      position: relative;
-      padding: 0.5rem 0.5625rem;
-      background: radial-gradient(var(--primary-900), var(--primary-800) 150%);
-      border: 0;
-      border-radius: 999rem;
-      font-size: var(--text-sm);
-      flex-direction: row;
-      box-shadow: var(--shadow-md);
-    }
-    .nav-items::before {
-      position: absolute;
-      z-index: -1;
-      background: var(--gradient-stroke);
-      border-radius: 999rem;
-      inset: -1px;
-      content: '';
-    }
-    .link {
-      padding: 0.5rem 1rem;
-      border-radius: 999rem;
-      transition:
-        color var(--theme-transition),
-        background-color var(--theme-transition);
-    }
-    .link:hover,
-    .link:focus {
-      background-color: var(--impact-subtle-overlay);
-      color: var(--primary-100);
-    }
-    .link.active {
-      background-color: var(--impact);
-      color: var(--impact-text-over);
-    }
-    .menu-footer {
-      --icon-padding: 0.375rem;
-
-      justify-self: flex-end;
-      align-items: center;
-      padding: 0;
-      background-color: transparent;
-      box-shadow: none;
-    }
-    .socials {
-      display: none;
-    }*/
-  }
-  /*
-  @media (min-width: 60em) {
-    .socials {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0;
-    }
-  }
-
-  @media (forced-colors: active) {
-    .link.active {
-      color: SelectedItem;
-    }
-  }
-  */
 </style>

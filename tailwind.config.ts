@@ -25,10 +25,11 @@ const system = [
   'sans-serif'
 ];
 
-const reverse = (color: object) =>
+type Color = { [x: string]: string };
+const reverse = (color: Color) =>
   [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].reduce(
     (acc, val) => ((acc[val] = color[900 - (val > 50 ? val : 0)]), acc),
-    { DEFAULT: color[950] }
+    { DEFAULT: color[950] } as Color
   );
 
 export default {
