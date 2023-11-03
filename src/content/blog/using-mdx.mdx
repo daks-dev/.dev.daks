@@ -1,8 +1,8 @@
 ---
 title: 'Using MDX'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 02 2022'
-heroImage: '5.jpg'
+publisDate: 'Jul 02 2022'
+image: '5.jpg'
 ---
 
 This theme comes with the [@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/) integration installed and configured in your `astro.config.mjs` config file. If you prefer not to use MDX, you can disable support by removing the integration from your config file.
@@ -26,13 +26,13 @@ When you open this page in the browser, you should see the clickable button belo
 
 ---
 
-import { Link } from '@daks.dev/astro.sdk/astro';
+/_ import { Link } from '@daks.dev/astro.sdk/astro'; _/
 
-<Link
+<a
   href='#'
   onclick="alert('clicked!')">
   Embedded component in MDX
-</Link>
+</a>
 
 ## More Links
 
