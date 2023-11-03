@@ -18,7 +18,8 @@ const { data, slug } = Astro.props.project;
     'transition-shadow duration-200'
   ]}
   href={`/work/${slug}`}
-  rel='prefetch'>
+  rel='prefetch'
+  itemprop='relatedLink'>
   <span
     class:list={[
       'z-10 m-2 px-4 pb-2.5 pt-2',

@@ -22,7 +22,6 @@
   --bg-blend-mode: lighten;
 }
 
-/* These backgrounds are displayed below the fold, so we lazy load them once the `.loaded` class has been set.  */
 :root.loaded {
   --bg-image-subtle-0: url('/images/bg/light/subtle/0/800w.avif');
   --bg-image-subtle-1: url('/images/bg/light/subtle/1/800w.avif');
@@ -56,26 +55,17 @@
 }
 
 .backdrop {
-  /* min-height: 100%; */
   isolation: isolate;
   background:
-    /*noise*/
     url('/images/bg/noise.avif') top center/220px repeat,
-    /*footer*/ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
-    /*header1*/ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
-    /*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
-    /*base*/ var(--bg-color);
-  background-blend-mode:
-    /*noise*/
-    overlay,
-    /*footer*/ var(--bg-blend-mode),
-    /*header1*/ var(--bg-svg-blend-mode),
-    /*header2*/ normal,
-    /*base*/ normal;
+    var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+    var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+    var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+    var(--bg-color);
+  background-blend-mode: overlay, var(--bg-blend-mode), var(--bg-svg-blend-mode), normal, normal;
 }
 
 @media (forced-colors: active) {
-  /* Deactivate custom backgrounds for high contrast users. */
   .backgrounds {
     background: none;
     background-blend-mode: none;

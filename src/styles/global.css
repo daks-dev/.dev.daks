@@ -1,4 +1,5 @@
-@import './variables';
+@import 'env';
+@import 'var';
 
 @tailwind base;
 

@@ -1,21 +1,12 @@
 ---
-import { Icon, type IconKeys } from '$lib/icons';
+import Icon from '$lib/icons/Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import twMerge from '$lib/tailwind';
 
-const textLinks: { label: string; href: string }[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' }
-];
-
-const iconLinks: { label: string; href: string; icon: IconKeys }[] = [
-  { label: 'Twitter', href: 'https://twitter.com', icon: 'twitter-logo' },
-  { label: 'Twitch', href: 'https://twitch.tv', icon: 'twitch-logo' },
-  { label: 'GitHub', href: 'https://github.com', icon: 'github-logo' },
-  { label: 'CodePen', href: 'https://codepen.io', icon: 'codepen-logo' },
-  { label: 'dribbble', href: 'https://dribbble.com', icon: 'dribbble-logo' },
-  { label: 'YouTube', href: 'https://www.youtube.com', icon: 'youtube-logo' }
-];
+import nav from '$lib/configs/nav';
+const {
+  navbar: { inners, outers }
+} = nav;
 
 const current = (href: string) =>
   Astro.url.pathname === href || Astro.url.pathname === `${href}/`
@@ -28,7 +19,6 @@ const current = (href: string) =>
 <nav
   class:list={[
     'relative z-50 mb-6',
-    // 'font-brand',
     'font-medium',
     'bp:px-20 bp:py-10',
     'bp:grid bp:grid-cols-[1fr_auto_1fr] bp:items-center bp:gap-4'
@@ -59,11 +49,11 @@ const current = (href: string) =>
             'rounded-full border-0 bg-gradient-menu-toogle shadow-md',
             'aria-expanded:bg-gradient-menu-toogle-expanded aria-expanded:text-light dark:aria-expanded:text-dark',
             'before:absolute before:-inset-px before:-z-10 before:rounded-full before:bg-gradient-stroke before:content-null',
-            'bp:hidden',
-            'menu-button'
+            'bp:hidden'
           ]}
+          aria-label='menu toggle'
           aria-expanded='false'>
-          <span class='sr-only'>Menu</span>
+          <span class='sr-only'>menu toggle</span>
           <Icon
             icon='list'
             size='1.5rem'
@@ -72,50 +62,10 @@ const current = (href: string) =>
       </template>
     </menu-button>
   </div>
-  <noscript>
-    <ul class='nav-items'>
-      {
-        textLinks.map(({ label, href }) => (
-          <li>
-            <a
-              aria-current={Astro.url.pathname === href}
-              class:list={[
-                'link',
-                {
-                  active:
-                    Astro.url.pathname === href ||
-                    (href !== '/' && Astro.url.pathname.startsWith(href))
-                }
-              ]}
-              href={href}>
-              {label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </noscript>
-  <noscript>
-    <div class='menu-footer'>
-      <div class='socials'>
-        {
-          iconLinks.map(({ href, icon, label }) => (
-            <a
-              class='social'
-              href={href}
-              target='_blank'>
-              <span class='sr-only'>{label}</span>
-              <Icon icon={icon} />
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </noscript>
   <div
     id='menu-content'
     hidden>
-    <ul
+    <menu
       class:list={[
         'm-0 p-8',
         'flex list-none flex-col gap-4',
@@ -127,60 +77,63 @@ const current = (href: string) =>
         'bp:rounded-full bp:border-0 bp:bg-gradient-menu-items bp:shadow-md',
         'bp:before:content-null',
         'bp:before:absolute bp:before:-inset-px bp:before:-z-10',
-        'bp:before:rounded-full bp:before:bg-gradient-stroke bp:before:content-null',
-        'nav-items'
+        'bp:before:rounded-full bp:before:bg-gradient-stroke bp:before:content-null'
       ]}>
       {
-        textLinks.map(({ label, href }) => (
+        inners.map(({ class: className, href, label, icon, ...props }) => (
           <li>
             <a
-              class:list={[
-                'link',
-                {
-                  active:
-                    Astro.url.pathname === href ||
-                    (href !== '/' && Astro.url.pathname.startsWith(href))
-                }
-              ]}
-              href={href}
-              rel='prefetch'
+              class={twMerge('inner', className)}
+              {href}
+              {...props}
+              aria-label={icon ? label : undefined}
               aria-current={current(href)}>
-              {label}
+              {icon ? (
+                <>
+                  <span class='sr-only'>{label}</span>
+                  <Icon {icon} />
+                </>
+              ) : (
+                <Fragment set:html={label} />
+              )}
             </a>
           </li>
         ))
       }
-    </ul>
+    </menu>
     <div
       class:list={[
         'py-6 pl-6 pr-8',
         'flex justify-between gap-3',
         'rounded-b-xl rounded-t-none bg-light-950 shadow-lg dark:bg-dark-950',
-        'bp:items-center bp:justify-self-end bp:bg-transparent bp:p-0 bp:shadow-none dark:bp:bg-transparent',
-        'menu-footer'
+        'bp:items-center bp:justify-self-end bp:bg-transparent bp:p-0 bp:shadow-none dark:bp:bg-transparent'
       ]}>
-      <div
-        class:list={[
-          'flex flex-wrap gap-2.5',
-          'xl:flex xl:justify-end xl:gap-0 bp:hidden',
-          'socials'
-        ]}>
-        {
-          iconLinks.map(({ href, icon, label }) => (
-            <a
-              class='social'
-              href={href}
-              target='_blank'>
-              <span class='sr-only'>{label}</span>
-              <Icon
-                icon={icon}
-                size='1.625rem'
-              />
-            </a>
-          ))
-        }
-      </div>
-      <div class:list={['flex items-center', 'theme-toggle']}>
+      {
+        outers && (
+          <div class:list={['flex flex-wrap gap-2.5', 'bp:hidden xl:flex xl:justify-end xl:gap-0']}>
+            {outers.map(({ class: className, href, label, icon, ...props }) => (
+              <a
+                class={twMerge('outer', className)}
+                {href}
+                {...props}
+                aria-label={icon ? label : undefined}>
+                {icon ? (
+                  <>
+                    <span class='sr-only'>{label}</span>
+                    <Icon
+                      {icon}
+                      size='1.625rem'
+                    />
+                  </>
+                ) : (
+                  <Fragment set:html={label} />
+                )}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      <div class='flex items-center'>
         <ThemeToggle />
       </div>
     </div>
@@ -216,7 +169,7 @@ const current = (href: string) =>
         setExpanded(e.matches);
         btn.hidden = e.matches;
       };
-      const mediaQueries = window.matchMedia('(min-width: 50em)');
+      const mediaQueries = window.matchMedia('(min-width: 800px)');
       handleViewports(mediaQueries);
       mediaQueries.addEventListener('change', handleViewports);
     }
@@ -225,7 +178,7 @@ const current = (href: string) =>
 </script>
 
 <style lang="postcss">
-  .link {
+  .inner {
     @apply inline-block
            text-light-300 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
            bp:py-2 bp:px-4 bp:rounded-full
@@ -235,7 +188,7 @@ const current = (href: string) =>
            forced-colors:text-selected;
   }
 
-  .social {
+  .outer {
     @apply flex p-2
            oversee:text-impact-text-over text-impact-dark no-underline
            ready:transition-colors ready:duration-200;

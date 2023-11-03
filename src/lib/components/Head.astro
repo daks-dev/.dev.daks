@@ -14,7 +14,7 @@ const {
   description = 'The personal site of DAKS.DEV',
   app,
   rss,
-  image = '/icons/logo.svg'
+  image = '/images/logo.png'
 } = Astro.props;
 
 // : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -72,24 +72,28 @@ const {
   rel='preload'
   href='/images/bg/dark/main/800w.avif'
   as='image'
+  type='image/avif'
   media='(max-width: 799px)'
 />
 <link
   rel='preload'
   href='/images/bg/dark/main/1440w.avif'
   as='image'
+  type='image/avif'
   media='(min-width: 800px)'
 />
 <link
   rel='preload'
   href='/images/bg/light/main/800w.avif'
   as='image'
+  type='image/avif'
   media='(max-width: 799px)'
 />
 <link
   rel='preload'
   href='/images/bg/light/main/1440w.avif'
   as='image'
+  type='image/avif'
   media='(min-width: 800px)'
 />
 
@@ -149,6 +153,7 @@ const {
   rel='yandex-tableau-widget'
   href='/tableau.json'
 />
+
 <meta
   property='og:type'
   content='website'
@@ -169,6 +174,31 @@ const {
   image && (
     <meta
       property='og:image'
+      content={new URL(image, Astro.url)}
+    />
+  )
+}
+
+<meta
+  property='twitter:card'
+  content='summary_large_image'
+/>
+<meta
+  property='twitter:url'
+  content={Astro.url}
+/>
+<meta
+  property='twitter:title'
+  content={title}
+/>
+<meta
+  property='twitter:description'
+  content={description}
+/>
+{
+  image && (
+    <meta
+      property='twitter:image'
       content={new URL(image, Astro.url)}
     />
   )

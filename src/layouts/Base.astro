@@ -1,7 +1,7 @@
 ---
 import { /*slide, fade,*/ ViewTransitions } from 'astro:transitions';
 import twMerge from '$lib/tailwind';
-import { Footer, Head, Nav, YandexMetrika } from '@/lib/components';
+import { Footer, Head, Navbar, YandexMetrika } from '@/lib/components';
 
 import '../styles/global.css';
 import '../styles/backdrop.css';
@@ -62,8 +62,10 @@ transition:animate={fade({ duration: '0.5s' })}
     itemscope
     itemtype={`https://schema.org/${schema}`}>
     <div class='backdrop flex min-h-screen flex-col'>
-      <Nav />
-      <div class={twMerge('flex grow flex-col gap-20', className)}>
+      <Navbar />
+      <div
+        class={twMerge('flex grow flex-col gap-20', className)}
+        transition:animate='slide'>
         <slot />
       </div>
       <Footer />
