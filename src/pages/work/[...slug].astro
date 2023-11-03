@@ -52,10 +52,10 @@ const { Content } = await entry.render();
     <main class='wrapper'>
       <div class='content flex flex-col gap-10'>
         {
-          entry.data.img && (
+          entry.data.image && (
             <img
-              src={entry.data.img}
-              alt={entry.data.img_alt || ''}
+              src={entry.data.image}
+              alt={entry.data.alt || ''}
             />
           )
         }

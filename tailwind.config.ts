@@ -105,7 +105,7 @@ export default {
         center: true
       },
       screens: {
-        bp: '50em' // defaultTheme.screens.md
+        bp: '800px' // defaultTheme.screens.md
       },
       spacing: {
         inherit: 'inherit',

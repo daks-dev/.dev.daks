@@ -30,8 +30,8 @@ const { data, slug } = Astro.props.project;
   </span>
   <img
     class:list={['h-full w-full object-cover', 'col-start-1 col-end-3 row-start-1 row-end-3']}
-    src={data.img}
-    alt={data.img_alt || ''}
+    src={data.image}
+    alt={data.alt || ''}
     loading='lazy'
     decoding='async'
   />
