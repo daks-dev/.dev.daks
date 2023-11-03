@@ -18,7 +18,7 @@ const { align = 'center', tagline, title } = Astro.props;
     <h1
       class:list={[
         'mx-auto mb-4 max-w-[37ch]',
-        'bp:text-7xl text-4xl text-light dark:text-dark sm:text-5xl',
+        'text-4xl text-light dark:text-dark sm:text-5xl bp:text-7xl',
         align === 'start' && 'bp:mx-unset'
       ]}>
       <slot name='title'>

@@ -63,9 +63,7 @@ transition:animate={fade({ duration: '0.5s' })}
     itemtype={`https://schema.org/${schema}`}>
     <div class='backdrop flex min-h-screen flex-col'>
       <Navbar />
-      <div
-        class={twMerge('flex grow flex-col gap-20', className)}
-        transition:animate='slide'>
+      <div class={twMerge('flex grow flex-col gap-20', className)}>
         <slot />
       </div>
       <Footer />
