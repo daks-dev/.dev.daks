@@ -13,10 +13,10 @@
   --primary-900: #f8fafc;
   --primary-950: #fff;
 
-  --impact: #7611a6;
-  --impact-light: #c561f6;
-  --impact-dark: #1c0056;
-  --impact-overlay: #c460f654;
+  --impact: rgb(119, 17, 166);
+  --impact-light: rgb(196, 97, 245);
+  --impact-dark: rgb(29, 0, 87);
+  --impact-overlay: rgba(196, 97, 245, 0.333);
   --impact-subtle-overlay: var(--impact-overlay);
   --impact-text-over: var(--primary-950);
 
@@ -84,7 +84,7 @@
 
   --impact-light: #1c0056;
   --impact-dark: #c561f6;
-  --impact-overlay: #c460f680;
+  --impact-overlay: rgba(196, 97, 245, 0.5);
   --impact-text-over: var(--primary);
 
   --link-color: var(--impact-dark);

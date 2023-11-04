@@ -27,16 +27,20 @@ const projects = (await getCollection('work'))
 
 <Layout class='bp:gap-48'>
   <div class='wrapper flex flex-col gap-8 lg:gap-20'>
-    <header class='hero'>
+    <header
+      class:list={[
+        'flex flex-col items-center gap-8',
+        'bp:grid bp:grid-cols-[6fr_4fr] bp:gap-16 bp:px-10',
+        'hero'
+      ]}>
       <Hero
-        title='Hello, my name is DAKS DEV'
         tagline='I am a Creative Developer who is currently based in Moscow, Russia.'
         align='start'>
         <Fragment slot='title'>
           Hello, my name is
           <span class='text-light-400 dark:text-dark-700'> DAKS.DEV</span>
         </Fragment>
-        <div class='roles'>
+        <div class='mt-2 hidden gap-2 bp:flex'>
           <Pill>
             <Icon
               icon='code'
@@ -58,13 +62,17 @@ const projects = (await getCollection('work'))
         </div>
       </Hero>
 
-      <!-- /images/portrait.jpg -->
       <img
-        class='w-full max-w-xs bg-gradient-impact'
+        class:list={[
+          'w-full max-w-xs',
+          'aspect-square object-cover object-top',
+          'rounded-3xl bg-gradient-impact shadow-lg shadow-light-400 dark:shadow-dark-600',
+          'bp:aspect-3/4 bp:rounded-5xl'
+        ]}
         src='/icons/astro.svg'
         width='128'
         height='128'
-        alt='astrojs'
+        alt=''
       />
     </header>
 
@@ -128,9 +136,7 @@ const projects = (await getCollection('work'))
 </Layout>
 
 <style lang="postcss">
-
-  .hero {
-    @apply flex flex-col items-center gap-8;
+  /*.hero {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -147,10 +153,10 @@ const projects = (await getCollection('work'))
     object-position: top;
     border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
-  }
+  }*/
 
   @media (min-width: 50em) {
-    .hero {
+    /*.hero {
       display: grid;
       grid-template-columns: 6fr 4fr;
       padding-inline: 2.5rem;
@@ -165,7 +171,7 @@ const projects = (await getCollection('work'))
       aspect-ratio: 3 / 4;
       border-radius: 4.5rem;
       object-fit: cover;
-    }
+    }*/
   }
 
   .section {
@@ -244,7 +250,7 @@ const projects = (await getCollection('work'))
   .mention-card {
     display: flex;
     background: var(--gradient-subtle);
-    border: 1px solid var(--primary-800);
+    border: 1px solid var(--primary-700);
     border-radius: 1.5rem;
     color: var(--primary-300);
     text-align: center;

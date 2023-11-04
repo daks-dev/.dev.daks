@@ -10,10 +10,11 @@ interface Props {
   class?: ClassName;
   title?: string | undefined;
   description?: string | undefined;
+  robots?: string;
   schema?: string;
 }
 
-const { class: className, title, description, schema = 'WebPage' } = Astro.props;
+const { class: className, title, description, robots, schema = 'WebPage' } = Astro.props;
 
 import { app, seo } from '$lib/configs';
 const {
@@ -53,6 +54,7 @@ transition:animate={fade({ duration: '0.5s' })}
     <Head
       {title}
       {description}
+      {robots}
       {app}
     />
     <ViewTransitions />

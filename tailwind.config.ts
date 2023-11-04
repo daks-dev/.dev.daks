@@ -93,13 +93,6 @@ export default {
       'gradient-menu-toogle': 'var(--gradient-menu-toogle)',
       'gradient-menu-toogle-expanded': 'var(--gradient-menu-toogle-expanded)'
     },
-    boxShadow: {
-      none: '0 0 #0000',
-      sm: 'var(--shadow-sm)',
-      md: 'var(--shadow-md)',
-      lg: 'var(--shadow-lg)',
-      'toggle-theme': 'var(--shadow-toggle-theme)'
-    },
     extend: {
       container: {
         center: true
@@ -110,6 +103,19 @@ export default {
       spacing: {
         inherit: 'inherit',
         unset: 'unset'
+      },
+      aspectRatio: {
+        '3/4': '3 / 4',
+        '4/3': '4 / 3',
+        A4: '620 / 877',
+        A4l: '877 / 620'
+      },
+      borderRadius: {
+        '4xl': '3rem',
+        '5xl': '4.5rem'
+      },
+      boxShadow: {
+        'toggle-theme': 'var(--shadow-toggle-theme)'
       },
       content: {
         null: '""'

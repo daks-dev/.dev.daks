@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Layout from '@/layouts/Base.astro';
 import ContactCTA from '$lib/components/ContactCTA.astro';
-import Icon from '$lib/icons/Icon.astro';
 import Hero from '$lib/ui/Hero.astro';
 import Pill from '$lib/ui/Pill.astro';
 
@@ -28,55 +27,51 @@ const { Content } = await entry.render();
 <Layout
   title={entry.data.title}
   description={entry.data.description}>
-  <div class='gap-15 flex flex-col'>
-    <header>
-      <div class='wrapper flex flex-col gap-2'>
-        <a
-          class='back-link'
-          href='/work'>
-          <Icon icon='arrow-left' />
-           Work
-        </a>
-        <Hero
-          title={entry.data.title}
-          align='start'>
-          <div class='details'>
-            <div class='tags'>
-              {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-            </div>
-            <p class='description'>{entry.data.description}</p>
+  <main class='wrapper'>
+    <header class='mb-8 border-b border-b-light-800 pb-4 dark:border-b-dark-800'>
+      <Hero
+        title={entry.data.title}
+        align='start'>
+        <div class='details'>
+          <div class='tags'>
+            {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
           </div>
-        </Hero>
-      </div>
-    </header>
-    <main class='wrapper'>
-      <div class='content flex flex-col gap-10'>
-        {
-          entry.data.image && (
-            <img
-              src={entry.data.image}
-              alt={entry.data.alt || ''}
-            />
-          )
-        }
-        <div class='content'>
-          <Content />
+          <p class='description'>{entry.data.description}</p>
         </div>
+      </Hero>
+    </header>
+
+    <div class='content flex flex-col gap-10'>
+      {
+        entry.data.image && (
+          <img
+            class:list={[
+              'bg-gradient-subtle',
+              'rounded-3xl border border-light-800 dark:border-dark-800',
+              'shadow-sm'
+            ]}
+            src={entry.data.image}
+            alt={entry.data.alt || ''}
+          />
+        )
+      }
+      <div class='content'>
+        <Content />
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
   <ContactCTA />
 </Layout>
 
 <style>
-  header {
+  /*header {
     padding-bottom: 2.5rem;
     border-bottom: 1px solid var(--primary-800);
   }
 
   .back-link {
     display: none;
-  }
+  }*/
 
   .details {
     display: flex;
@@ -114,12 +109,12 @@ const { Content } = await entry.render();
     margin: 1.5rem 0;
   }
 
-  .content :global(img) {
+  /*.content :global(img) {
     background: var(--gradient-subtle);
     border: 1px solid var(--primary-800);
     border-radius: 1.5rem;
     box-shadow: var(--shadow-sm);
-  }
+  }*/
 
   .content :global(blockquote) {
     color: var(--primary);
@@ -146,10 +141,10 @@ const { Content } = await entry.render();
   }
 
   @media (min-width: 50em) {
-    .back-link {
+    /*.back-link {
       display: block;
       align-self: flex-start;
-    }
+    }*/
     .details {
       flex-direction: row;
       gap: 2.5rem;

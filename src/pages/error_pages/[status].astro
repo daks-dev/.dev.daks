@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Error.astro';
+
+export const getStaticPaths = () => [
+  { params: { status: '403' } },
+  { params: { status: '404' } },
+  { params: { status: '500' } }
+];
+
+type Props = {
+  status: string;
+};
+const { status } = Astro.params;
+---
+
+<Layout {status} />

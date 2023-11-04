@@ -18,15 +18,15 @@ const current = (href: string) =>
 
 <nav
   class:list={[
-    'relative z-50 mb-6',
+    'relative z-50 bp:mb-4',
     'font-medium',
-    'bp:px-20 bp:py-10',
-    'bp:grid bp:grid-cols-[1fr_auto_1fr] bp:items-center bp:gap-4'
+    'bp:px-20 bp:py-8',
+    'bp:grid bp:h-32 bp:grid-cols-[1fr_auto_1fr] bp:items-center bp:gap-x-4'
   ]}>
-  <div class:list={['p-6 bp:p-0', 'flex justify-between gap-2', 'menu-header']}>
+  <div class:list={['p-6 bp:p-0', 'flex items-center justify-between gap-2', 'menu-header']}>
     <a
       class:list={[
-        'flex items-center gap-2',
+        'flex h-10 items-center gap-2',
         'leading-tight text-light no-underline dark:text-dark',
         'bp:text-xl',
         'site-title'
@@ -46,7 +46,7 @@ const current = (href: string) =>
           class:list={[
             'relative flex p-2 ',
             'text-light-300 dark:text-dark-300',
-            'rounded-full border-0 bg-gradient-menu-toogle shadow-md',
+            'rounded-full border-0 bg-gradient-menu-toogle shadow-md dark:shadow-dark-800',
             'aria-expanded:bg-gradient-menu-toogle-expanded aria-expanded:text-light dark:aria-expanded:text-dark',
             'before:absolute before:-inset-px before:-z-10 before:rounded-full before:bg-gradient-stroke before:content-null',
             'bp:hidden'
@@ -74,10 +74,10 @@ const current = (href: string) =>
         'bp:relative bp:px-2.5 bp:py-2',
         'bp:flex-row',
         'bp:text-sm',
-        'bp:rounded-full bp:border-0 bp:bg-gradient-menu-items bp:shadow-md',
+        'bp:rounded-full bp:border-0 bp:bg-gradient-menu-items bp:shadow-md bp:shadow-dark-700',
         'bp:before:content-null',
         'bp:before:absolute bp:before:-inset-px bp:before:-z-10',
-        'bp:before:rounded-full bp:before:bg-gradient-stroke bp:before:content-null'
+        'bp:before:rounded-full bp:before:bg-gradient-stroke'
       ]}>
       {
         inners.map(({ class: className, href, label, icon, ...props }) => (
@@ -105,7 +105,7 @@ const current = (href: string) =>
       class:list={[
         'py-6 pl-6 pr-8',
         'flex justify-between gap-3',
-        'rounded-b-xl rounded-t-none bg-light-950 shadow-lg dark:bg-dark-950',
+        'rounded-lg rounded-t-none bg-light-950 shadow-lg dark:bg-dark-950 dark:shadow-dark-800',
         'bp:items-center bp:justify-self-end bp:bg-transparent bp:p-0 bp:shadow-none dark:bp:bg-transparent'
       ]}>
       {
@@ -180,11 +180,11 @@ const current = (href: string) =>
 <style lang="postcss">
   .inner {
     @apply inline-block
-           text-light-300 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
+           text-light-400 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
            bp:py-2 bp:px-4 bp:rounded-full
            bp:ready:transition-colors bp:ready:duration-200
            bp:oversee:text-light-100 dark:bp:oversee:text-dark-100 bp:oversee:bg-impact-subtle-overlay
-           bp:aria-[current]:bg-impact bp:aria-[current]:text-impact-text-over
+           bp:aria-[current="page"]:bg-impact bp:aria-[current="page"]:text-impact-text-over
            forced-colors:text-selected;
   }
 

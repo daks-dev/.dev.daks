@@ -5,13 +5,18 @@ import Icon from '$lib/icons/Icon.astro';
 
 <aside
   class:list={[
-    'flex flex-col items-center gap-12 bp:flex-row bp:flex-wrap bp:justify-between',
+    'flex flex-col items-center gap-y-8 lg:flex-row lg:justify-between',
     'px-6 py-20 bp:p-32',
     'bg-light-950/40 dark:bg-dark-950/40',
     'shadow-sm',
     'border-b border-t border-light-800 dark:border-dark-800'
   ]}>
-  <h2 class='max-w-[15ch] text-center text-xl bp:text-left bp:text-5xl xl:max-w-[20ch]'>
+  <h2
+    class:list={[
+      'max-w-[15ch] xl:max-w-[20ch]',
+      'text-2xl sm:text-3xl md:text-4xl xl:text-5xl',
+      'text-center leading-normal lg:text-left'
+    ]}>
     Interested in working together?
   </h2>
   <CallToAction href='mailto:mail@daks.dev'>

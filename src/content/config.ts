@@ -6,7 +6,7 @@ const work = defineCollection({
     title: z.string(),
     description: z.string(),
     publishDate: z.coerce.date(),
-    updateDate: z.coerce.date().optional(),
+    update: z.coerce.date().optional(),
     tags: z.array(z.string()),
     image: z.string(),
     alt: z.string().optional()
@@ -18,8 +18,8 @@ const blog = defineCollection({
     z.object({
       title: z.string(),
       description: z.string(),
-      publisDate: z.coerce.date(),
-      updateDate: z.coerce.date().optional(),
+      publish: z.coerce.date(),
+      update: z.coerce.date().optional(),
       image: z
         .preprocess((val) => `./images/${val}`, image())
         .refine((img) => img.width >= 720, {

@@ -28,7 +28,6 @@ export default defineConfig({
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         $lib: fileURLToPath(new URL('./src/lib', import.meta.url))
-        // $app: fileURLToPath(new URL('./src/lib/app', import.meta.url))
       }
     }
     // plugins: []
@@ -43,17 +42,14 @@ export default defineConfig({
     }),
     tailwind(),
     mdx(),
-    // @ts-ignore
     prefetch({
       throttle: 3
     }),
-    // @ts-ignore
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date()
     }),
-    // @ts-ignore
     compress({
       Logger: 1
     })

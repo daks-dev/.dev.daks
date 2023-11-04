@@ -5,6 +5,7 @@ const { version } = pkg;
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  robots?: string;
   app?: Record<string, string>;
   rss?: string;
   image?: string;
@@ -12,6 +13,7 @@ interface Props {
 const {
   title = 'DAKS.DEV: Personal Site',
   description = 'The personal site of DAKS.DEV',
+  robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
   app,
   rss,
   image = '/images/logo.png'
@@ -27,7 +29,7 @@ const {
 />
 <meta
   name='robots'
-  content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+  content={robots}
 />
 <link
   rel='canonical'
@@ -68,6 +70,8 @@ const {
   )
 }
 
+{
+  /*
 <link
   rel='preload'
   href='/images/bg/dark/main/800w.avif'
@@ -96,6 +100,8 @@ const {
   type='image/avif'
   media='(min-width: 800px)'
 />
+  */
+}
 
 <link
   rel='alternate icon'
