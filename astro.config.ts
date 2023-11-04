@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // import node from '@astrojs/node';
 
-import compress from 'astro-compress';
+// import compress from 'astro-compress';
 import mdx from '@astrojs/mdx';
 import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
@@ -34,7 +34,7 @@ export default defineConfig({
     // define: { 'process.env': process.env }
   },
 
-  scopedStyleStrategy: 'where',
+  // scopedStyleStrategy: 'where',
 
   integrations: [
     svelte({
@@ -49,10 +49,10 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date()
-    }),
+    }) /*,
     compress({
       Logger: 1
-    })
+    })*/
   ],
 
   markdown: {

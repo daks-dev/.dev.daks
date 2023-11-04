@@ -34,11 +34,12 @@ const projects = (await getCollection('work'))
         'hero'
       ]}>
       <Hero
+        tag='div'
         tagline='I am a Creative Developer who is currently based in Moscow, Russia.'
         align='start'>
         <Fragment slot='title'>
           Hello, my name is
-          <span class='text-light-400 dark:text-dark-700'> DAKS.DEV</span>
+          <span class='text-light-200 dark:text-dark-500'> DAKS.DEV</span>
         </Fragment>
         <div class='mt-2 hidden gap-2 bp:flex'>
           <Pill>
@@ -66,7 +67,7 @@ const projects = (await getCollection('work'))
         class:list={[
           'w-full max-w-xs',
           'aspect-square object-cover object-top',
-          'rounded-3xl bg-gradient-impact shadow-lg shadow-light-400 dark:shadow-dark-600',
+          'rounded-3xl bg-gradient-impact shadow-lg shadow-light-300 dark:shadow-dark-700',
           'bp:aspect-3/4 bp:rounded-5xl'
         ]}
         src='/icons/astro.svg'
@@ -136,44 +137,6 @@ const projects = (await getCollection('work'))
 </Layout>
 
 <style lang="postcss">
-  /*.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .roles {
-    display: none;
-  }
-
-  .hero img {
-    aspect-ratio: 1;
-    object-fit: cover;
-    object-position: top;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
-  }*/
-
-  @media (min-width: 50em) {
-    /*.hero {
-      display: grid;
-      grid-template-columns: 6fr 4fr;
-      padding-inline: 2.5rem;
-      gap: 3.75rem;
-    }
-    .roles {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-    }
-    .hero img {
-      aspect-ratio: 3 / 4;
-      border-radius: 4.5rem;
-      object-fit: cover;
-    }*/
-  }
-
   .section {
     display: grid;
     gap: 2rem;
@@ -248,16 +211,22 @@ const projects = (await getCollection('work'))
   }
 
   .mention-card {
+    @apply h-28 flex justify-center items-center
+           text-light-300 dark:text-dark-300 text-center
+           border border-light-600 dark:border-dark-800 rounded-3xl
+           bg-gradient-subtle shadow-sm;
+    /*
     display: flex;
-    background: var(--gradient-subtle);
-    border: 1px solid var(--primary-700);
-    border-radius: 1.5rem;
-    color: var(--primary-300);
-    text-align: center;
-    height: 7rem;
     justify-content: center;
     align-items: center;
+    color: var(--primary-300);
+    text-align: center;
+    background: var(--gradient-subtle);
+    border: 1px solid var(--primary-600);
+    border-radius: 1.5rem;
+    height: 7rem;
     box-shadow: var(--shadow-sm);
+    */
   }
 
   @media (min-width: 50em) {

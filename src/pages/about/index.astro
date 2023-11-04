@@ -2,17 +2,25 @@
 import Layout from '@/layouts/Base.astro';
 import ContactCTA from '$lib/components/ContactCTA.astro';
 import Hero from '$lib/ui/Hero.astro';
+
+import '@/styles/content.css';
 ---
 
 <Layout
   title='About | DAKS.DEV'
   description='About DAKS.DEV Lorem Ipsum'>
-  <main class='wrapper about'>
+  <main
+    class:list={['wrapper', 'flex flex-col gap-14', 'bp:grid bp:grid-cols-[1fr_60%_1fr]', 'about']}>
     <Hero
+      class='bp:col-start-2'
       title='About'
       tagline='Thanks for stopping by. Read below to learn more about myself and my background.'>
       <img
-        class='w-full max-w-xs self-center bg-light-500 dark:bg-dark-700'
+        class:list={[
+          'mt-6 w-full max-w-xs self-center',
+          'rounded-3xl bg-gradient-impact',
+          'shadow-md dark:shadow-dark-800'
+        ]}
         src='/icons/astro.svg'
         width='128'
         height='128'
@@ -22,7 +30,7 @@ import Hero from '$lib/ui/Hero.astro';
     </Hero>
 
     <section>
-      <h2 class='section-title'>Background</h2>
+      <h2>Background</h2>
       <div class='content'>
         <p>
           Lorem ipsum dolor sit amet, <a href='https://astro.build/'>Astro</a> makes people happy.
@@ -45,14 +53,16 @@ import Hero from '$lib/ui/Hero.astro';
         </p>
       </div>
     </section>
+
     <section>
-      <h2 class='section-title'>Education</h2>
+      <h2>Education</h2>
       <div class='content'>
         <p>Corporis voluptates tenetur laudantium.</p>
       </div>
     </section>
+
     <section>
-      <h2 class='section-title'>Skills</h2>
+      <h2>Skills</h2>
       <div class='content'>
         <p>officia unde omnis</p>
       </div>
@@ -62,58 +72,16 @@ import Hero from '$lib/ui/Hero.astro';
   <ContactCTA />
 </Layout>
 
-<style>
-  .about {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-  }
-
-  img {
-    margin-top: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-md);
-  }
-
+<style lang="postcss">
   section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    color: var(--primary-200);
+    @apply flex flex-col gap-2 bp:contents text-light-200 dark:text-dark-200;
   }
 
-  .section-title {
-    color: var(--primary);
-    font-size: var(--text-3xl);
-    grid-column-start: 1;
+  h2 {
+    @apply col-start-1 bp:-mt-1 text-2xl text-light dark:text-dark bp:text-right;
   }
 
   .content {
-    grid-column: 2 / 4;
-  }
-
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
-  }
-
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentcolor;
-  }
-
-  @media (min-width: 50em) {
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 60% 1fr;
-    }
-    .about > :global(:first-child) {
-      grid-column-start: 2;
-    }
-    section {
-      display: contents;
-      font-size: var(--text-xl);
-    }
+    @apply col-span-2 max-w-none bp:text-xl;
   }
 </style>

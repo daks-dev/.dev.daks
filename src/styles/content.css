@@ -1,0 +1,31 @@
+@tailwind components;
+
+@layer components {
+  :is(.content) {
+    @apply mx-auto w-full max-w-prose bp:text-lg;
+  }
+
+  :is(.content) > * + * {
+    @apply mt-4;
+  }
+
+  :is(.content) :where(h1 h2, h3, h4, h5) {
+    @apply mx-0 my-6;
+  }
+
+  :is(.content) a {
+    @apply underline decoration-transparent underline-offset-4 transition-colors
+           duration-200 oversee:decoration-current;
+  }
+
+  :is(.content) img {
+    @apply rounded-3xl border border-light-800 bg-gradient-subtle shadow-sm
+           dark:border-dark-800 dark:shadow-md dark:shadow-dark-700;
+  }
+
+  :is(.content) blockquote {
+    @apply border-s-4 border-impact-dark ps-6
+           text-xl font-medium leading-tight text-light dark:text-dark
+           bp:text-2xl;
+  }
+}

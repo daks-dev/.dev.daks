@@ -1,4 +1,3 @@
-@import 'env';
 @import 'var';
 
 @tailwind base;
@@ -11,19 +10,12 @@
   }
 
   body {
-    @apply overflow-y-scroll bg-light-950 leading-normal text-light-200 antialiased dark:bg-dark-950 dark:text-dark-200;
+    @apply overflow-y-scroll bg-light-950 leading-normal text-light-200 antialiased
+           dark:bg-dark-950 dark:text-dark-200;
   }
 
   a {
     @apply text-link;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    @apply font-semibold leading-tight text-light-100 dark:text-dark-100;
   }
 
   h1 {
@@ -45,12 +37,20 @@
   h5 {
     @apply text-3xl;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-semibold leading-tight text-light-100 dark:text-dark-100;
+  }
 }
 
 @tailwind components;
 
 @layer components {
-  .wrapper {
+  :is(.wrapper) {
     @apply me-auto ms-auto w-full max-w-7xl pe-6 ps-6;
   }
 }

@@ -1,19 +1,24 @@
 ---
+import twMerge from '$lib/tailwind';
+
 interface Props {
+  tag?: 'header' | 'div';
+  class?: ClassName;
   title?: string;
   tagline?: string;
   align?: 'start' | 'center';
 }
 
-const { align = 'center', tagline, title } = Astro.props;
+const { tag: Element = 'header', class: className, title, tagline, align = 'center' } = Astro.props;
 ---
 
-<div
-  class:list={[
+<Element
+  class={twMerge(
     'flex flex-col gap-4',
     'text-center text-xl bp:text-2xl',
-    align === 'start' && 'bp:text-start'
-  ]}>
+    align === 'start' && 'bp:text-start',
+    className
+  )}>
   <div class='flex flex-col gap-2'>
     <h1
       class:list={[
@@ -25,14 +30,16 @@ const { align = 'center', tagline, title } = Astro.props;
         <Fragment set:html={title} />
       </slot>
     </h1>
-    {
-      tagline && (
-        <p
-          class:list={['mx-auto mb-2 max-w-[37ch]', align === 'start' && 'bp:mx-0']}
-          set:html={tagline}
-        />
-      )
-    }
+    <slot name='tagline'>
+      {
+        tagline && (
+          <p
+            class:list={['mx-auto mb-2 max-w-[37ch]', align === 'start' && 'bp:mx-0']}
+            set:html={tagline}
+          />
+        )
+      }
+    </slot>
   </div>
   <slot />
-</div>
+</Element>

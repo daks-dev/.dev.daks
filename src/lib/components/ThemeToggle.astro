@@ -9,7 +9,7 @@ import Icon from '$lib/icons/Icon.astro';
       'flex cursor-pointer',
       'rounded-full bg-light-950 dark:bg-dark-950',
       'shadow-toggle-theme'
-      // 'motion-safe:transition-colors duration-200'
+      // 'motion-safe:transition-colors motion-safe:duration-200'
     ]}>
     <span class='sr-only'>Dark theme</span>
     <span
@@ -18,52 +18,46 @@ import Icon from '$lib/icons/Icon.astro';
         'text-impact-text-over dark:text-impact-overlay',
         'before:absolute before:inset-0 before:-z-10  before:content-null',
         'before:rounded-full before:bg-impact dark:before:translate-x-full',
-        'ready:motion-safe:before:transition-transform ready:motion-safe:before:duration-200',
-        'icon light'
+        'motion-safe:before:transition-transform motion-safe:before:duration-200'
       ]}>
-      <Icon
-        icon='sun'
-        size='1rem'
-      />
+      <Icon icon='sun' />
     </span>
     <span
       class:list={[
         'relative z-10 flex h-8 w-8 p-2',
-        'text-impact-overlay dark:text-impact-text-over',
-        'icon dark'
+        'text-impact-overlay dark:text-impact-text-over'
       ]}>
-      <Icon
-        icon='moon-stars'
-        size='1rem'
-      />
+      <Icon icon='moon-stars' />
     </span>
   </button>
 </theme-toggle>
 
 <script>
   class ThemeToggle extends HTMLElement {
+    readonly class = 'theme-dark';
+    btn: Element;
+
     constructor() {
       super();
-
-      const button = this.querySelector('button')!;
-
-      /** Set the theme to dark/light mode. */
-      const setTheme = (dark: boolean) => {
-        document.documentElement.classList[dark ? 'add' : 'remove']('theme-dark');
-        document.documentElement.classList[dark ? 'add' : 'remove']('dark');
-        button.setAttribute('aria-pressed', String(dark));
-      };
-
-      // Toggle the theme when a user clicks the button.
-      button.addEventListener('click', () => setTheme(!this.isDark()));
-
-      // Initialize button state to reflect current theme.
-      setTheme(this.isDark());
+      this.btn = this.children[0];
     }
+
+    connectedCallback() {
+      this.btn.addEventListener('click', () => this.setTheme(!this.isDark()));
+      this.setTheme(this.isDark());
+    }
+
+    // disconnectedCallback() {}
 
     isDark() {
-      return document.documentElement.classList.contains('theme-dark');
+      return document.documentElement.classList.contains(this.class);
     }
+
+    setTheme = (dark: boolean) => {
+      document.documentElement.classList[dark ? 'add' : 'remove'](this.class);
+      this.btn.setAttribute('aria-pressed', String(dark));
+    };
   }
+
   customElements.define('theme-toggle', ThemeToggle);
 </script>

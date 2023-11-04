@@ -18,7 +18,7 @@ const current = (href: string) =>
 
 <nav
   class:list={[
-    'relative z-50 bp:mb-4',
+    'relative z-50 mb-8',
     'font-medium',
     'bp:px-20 bp:py-8',
     'bp:grid bp:h-32 bp:grid-cols-[1fr_auto_1fr] bp:items-center bp:gap-x-4'
@@ -28,8 +28,7 @@ const current = (href: string) =>
       class:list={[
         'flex h-10 items-center gap-2',
         'leading-tight text-light no-underline dark:text-dark',
-        'bp:text-xl',
-        'site-title'
+        'bp:text-xl'
       ]}
       href='/'>
       <Icon
@@ -43,6 +42,7 @@ const current = (href: string) =>
     <menu-button>
       <template>
         <button
+          id='navbar-menu-toogle'
           class:list={[
             'relative flex p-2 ',
             'text-light-300 dark:text-dark-300',
@@ -52,7 +52,8 @@ const current = (href: string) =>
             'bp:hidden'
           ]}
           aria-label='menu toggle'
-          aria-expanded='false'>
+          aria-expanded='false'
+          aria-controls='navbar-menu'>
           <span class='sr-only'>menu toggle</span>
           <Icon
             icon='list'
@@ -63,13 +64,15 @@ const current = (href: string) =>
     </menu-button>
   </div>
   <div
-    id='menu-content'
+    id='navbar-menu'
+    class='absolute inset-x-0 bp:contents'
+    aria-owns='navbar-menu-toggle'
     hidden>
     <menu
       class:list={[
         'm-0 p-8',
         'flex list-none flex-col gap-4',
-        'text-lg leading-snug',
+        'text-lg leading-tight',
         'border border-light-800 bg-light-950 dark:border-dark-800 dark:bg-dark-950',
         'bp:relative bp:px-2.5 bp:py-2',
         'bp:flex-row',
@@ -142,44 +145,56 @@ const current = (href: string) =>
 
 <script>
   class MenuButton extends HTMLElement {
+    media = window.matchMedia('(min-width: 800px)');
+    btn: HTMLButtonElement;
+    menu: HTMLElement;
+
     constructor() {
       super();
-
-      // Inject menu toggle button when JS runs.
       this.appendChild(this.querySelector('template')!.content.cloneNode(true));
-      const btn = this.querySelector('button')!;
-
-      // Hide menu (shown by default to support no-JS browsers).
-      const menu = document.getElementById('menu-content')!;
-      menu.hidden = true;
-      // Add "menu-content" class in JS to avoid covering content in non-JS browsers.
-      menu.classList.add('menu-content');
-
-      /** Set whether the menu is currently expanded or collapsed. */
-      const setExpanded = (expand: boolean) => {
-        btn.setAttribute('aria-expanded', expand ? 'true' : 'false');
-        menu.hidden = !expand;
-      };
-
-      // Toggle menu visibility when the menu button is clicked.
-      btn.addEventListener('click', () => setExpanded(menu.hidden));
-
-      // Hide menu button for large screens.
-      const handleViewports = (e: MediaQueryList | MediaQueryListEvent) => {
-        setExpanded(e.matches);
-        btn.hidden = e.matches;
-      };
-      const mediaQueries = window.matchMedia('(min-width: 800px)');
-      handleViewports(mediaQueries);
-      mediaQueries.addEventListener('change', handleViewports);
+      this.btn = this.querySelector('button')!;
+      this.menu = document.getElementById('navbar-menu')!;
+      this.menu.hidden = true;
+      // this.menu.classList.add('navbar-menu');
+      this.check(this.media);
     }
+
+    connectedCallback() {
+      this.btn.addEventListener('click', () => this.set(this.menu.hidden));
+      this.media.addEventListener('change', this.check);
+      document.addEventListener('click', this.outside);
+    }
+
+    disconnectedCallback() {
+      document.removeEventListener('click', this.outside);
+    }
+
+    set = (x: boolean) => {
+      this.btn.setAttribute('aria-expanded', x ? 'true' : 'false');
+      this.menu.hidden = !x;
+    };
+
+    check = (e: MediaQueryList | MediaQueryListEvent) => {
+      this.set(e.matches);
+      this.btn.hidden = e.matches;
+    };
+
+    outside = (e: Event) => {
+      if (
+        e?.target &&
+        !this.btn.contains(e.target as Node) &&
+        !this.menu.contains(e.target as Node)
+      )
+        this.check(this.media);
+    };
   }
+
   customElements.define('menu-button', MenuButton);
 </script>
 
 <style lang="postcss">
   .inner {
-    @apply inline-block
+    @apply block
            text-light-400 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
            bp:py-2 bp:px-4 bp:rounded-full
            bp:ready:transition-colors bp:ready:duration-200
@@ -193,8 +208,9 @@ const current = (href: string) =>
            oversee:text-impact-text-over text-impact-dark no-underline
            ready:transition-colors ready:duration-200;
   }
-
-  .menu-content {
+  /*
+  .navbar-menu {
     @apply absolute inset-x-0 bp:contents;
   }
+  */
 </style>

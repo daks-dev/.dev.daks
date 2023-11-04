@@ -1,16 +1,11 @@
 // import defaultTheme from 'tailwindcss/defaultTheme';
-import plugin from 'tailwindcss/plugin';
 import colors from 'tailwindcss/colors';
 import type { Config } from 'tailwindcss';
 
-const variants = plugin(({ addVariant }) => {
-  addVariant('onload', ['&.loaded', '.loaded &']);
-  addVariant('onswap', ['&.swapped', '.swapped &']);
-  addVariant('ready', ['&:where(.loaded, .swapped)', ':where(.loaded, .swapped) &']);
-  addVariant('onscroll', ['&.scrolled', '.scrolled &']);
-  addVariant('oversee', ['&:where(:hover, :focus)']);
-  addVariant('forced-colors', '@media (forced-colors: active)');
-});
+import { fontSans } from './src/lib/tailwind/font-family';
+import env from './src/lib/tailwind/plugins/env';
+import utilities from './src/lib/tailwind/plugins/utilities';
+import variants from './src/lib/tailwind/plugins/variants';
 
 type Color = { [x: string]: string };
 const reverse = (color: Color) =>
@@ -94,6 +89,7 @@ export default {
       'gradient-menu-toogle-expanded': 'var(--gradient-menu-toogle-expanded)'
     },
     extend: {
+      fontFamily: fontSans(),
       container: {
         center: true
       },
@@ -123,5 +119,5 @@ export default {
     }
   },
 
-  plugins: [variants]
+  plugins: [env, variants, utilities]
 } satisfies Config;

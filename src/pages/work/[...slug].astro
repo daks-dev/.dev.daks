@@ -5,13 +5,12 @@ import ContactCTA from '$lib/components/ContactCTA.astro';
 import Hero from '$lib/ui/Hero.astro';
 import Pill from '$lib/ui/Pill.astro';
 
+import '@/styles/content.css';
+
 interface Props {
   entry: CollectionEntry<'work'>;
 }
 
-// This is a dynamic route that generates a page for every Markdown file in src/content/
-// Read more about dynamic routes and this `getStaticPaths` function in the Astro docs:
-// https://docs.astro.build/en/core-concepts/routing/#dynamic-routes
 export async function getStaticPaths() {
   const work = await getCollection('work');
   return work.map((entry) => ({
@@ -28,129 +27,36 @@ const { Content } = await entry.render();
   title={entry.data.title}
   description={entry.data.description}>
   <main class='wrapper'>
-    <header class='mb-8 border-b border-b-light-800 pb-4 dark:border-b-dark-800'>
-      <Hero
-        title={entry.data.title}
-        align='start'>
-        <div class='details'>
-          <div class='tags'>
-            {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
-          </div>
-          <p class='description'>{entry.data.description}</p>
+    <Hero
+      class='mb-8 border-b border-b-light-800 pb-4 dark:border-b-dark-800'
+      title={entry.data.title}>
+      <div
+        class:list={[
+          'p-2',
+          'flex flex-col items-center justify-between gap-6',
+          'bp:flex-row bp:gap-10'
+        ]}>
+        <div class='flex gap-2'>
+          {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
         </div>
-      </Hero>
-    </header>
+        <p class='max-w-[54ch] text-xl'>
+          {entry.data.description}
+        </p>
+      </div>
+    </Hero>
 
     <div class='content flex flex-col gap-10'>
       {
         entry.data.image && (
           <img
-            class:list={[
-              'bg-gradient-subtle',
-              'rounded-3xl border border-light-800 dark:border-dark-800',
-              'shadow-sm'
-            ]}
             src={entry.data.image}
             alt={entry.data.alt || ''}
           />
         )
       }
-      <div class='content'>
-        <Content />
-      </div>
+      <Content />
     </div>
   </main>
+
   <ContactCTA />
 </Layout>
-
-<style>
-  /*header {
-    padding-bottom: 2.5rem;
-    border-bottom: 1px solid var(--primary-800);
-  }
-
-  .back-link {
-    display: none;
-  }*/
-
-  .details {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-    gap: 1.5rem;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .description {
-    font-size: var(--text-xl);
-    max-width: 54ch;
-  }
-
-  .content {
-    max-width: 65ch;
-    margin-inline: auto;
-  }
-
-  .content > :global(* + *) {
-    margin-top: 1rem;
-  }
-
-  .content :global(h1),
-  .content :global(h2),
-  .content :global(h3),
-  .content :global(h4),
-  .content :global(h5) {
-    margin: 1.5rem 0;
-  }
-
-  /*.content :global(img) {
-    background: var(--gradient-subtle);
-    border: 1px solid var(--primary-800);
-    border-radius: 1.5rem;
-    box-shadow: var(--shadow-sm);
-  }*/
-
-  .content :global(blockquote) {
-    color: var(--primary);
-    /* font-family: var(--font-brand); */
-    font-size: var(--text-xl);
-    font-weight: 600;
-    line-height: 1.1;
-    padding-inline-start: 1.5rem;
-    border-inline-start: 0.25rem solid var(--impact-dark);
-  }
-
-  .back-link,
-  .content :global(a) {
-    text-decoration: 1px solid underline transparent;
-    text-underline-offset: 0.25em;
-    transition: text-decoration-color var(--theme-transition);
-  }
-
-  .back-link:hover,
-  .back-link:focus,
-  .content :global(a:hover),
-  .content :global(a:focus) {
-    text-decoration-color: currentcolor;
-  }
-
-  @media (min-width: 50em) {
-    /*.back-link {
-      display: block;
-      align-self: flex-start;
-    }*/
-    .details {
-      flex-direction: row;
-      gap: 2.5rem;
-    }
-    .content :global(blockquote) {
-      font-size: var(--text-4xl);
-    }
-  }
-</style>
