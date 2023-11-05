@@ -2,15 +2,19 @@
 
 @layer components {
   :is(.content) {
-    @apply mx-auto w-full max-w-prose bp:text-lg;
+    @apply bp:text-lg;
   }
+}
 
+@tailwind utilities;
+
+@layer utilities {
   :is(.content) > * + * {
-    @apply mt-4;
+    @apply mt-5;
   }
 
   :is(.content) :where(h1 h2, h3, h4, h5) {
-    @apply mx-0 my-6;
+    @apply mx-0 mt-7;
   }
 
   :is(.content) a {

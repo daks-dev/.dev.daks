@@ -2,10 +2,8 @@
 import colors from 'tailwindcss/colors';
 import type { Config } from 'tailwindcss';
 
+import common from './src/lib/tailwind/presets/common';
 import { fontSans } from './src/lib/tailwind/font-family';
-import env from './src/lib/tailwind/plugins/env';
-import utilities from './src/lib/tailwind/plugins/utilities';
-import variants from './src/lib/tailwind/plugins/variants';
 
 type Color = { [x: string]: string };
 const reverse = (color: Color) =>
@@ -17,10 +15,9 @@ const reverse = (color: Color) =>
 export default {
   content: ['./src/**/*.{html,js,jsx,ts,tsx,md,mdx,astro,svelte,vue}'],
 
-  // darkMode: 'class',
   darkMode: ['class', '.theme-dark'],
 
-  // presets: [],
+  presets: [common],
 
   theme: {
     colors: {
@@ -89,35 +86,15 @@ export default {
       'gradient-menu-toogle-expanded': 'var(--gradient-menu-toogle-expanded)'
     },
     extend: {
-      fontFamily: fontSans(),
-      container: {
-        center: true
-      },
+      fontFamily: fontSans('"Open Sans"'),
       screens: {
         bp: '800px' // defaultTheme.screens.md
       },
-      spacing: {
-        inherit: 'inherit',
-        unset: 'unset'
-      },
-      aspectRatio: {
-        '3/4': '3 / 4',
-        '4/3': '4 / 3',
-        A4: '620 / 877',
-        A4l: '877 / 620'
-      },
-      borderRadius: {
-        '4xl': '3rem',
-        '5xl': '4.5rem'
-      },
       boxShadow: {
         'toggle-theme': 'var(--shadow-toggle-theme)'
-      },
-      content: {
-        null: '""'
       }
     }
-  },
+  }
 
-  plugins: [env, variants, utilities]
+  // plugins: []
 } satisfies Config;

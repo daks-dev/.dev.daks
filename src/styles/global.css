@@ -1,3 +1,4 @@
+@import 'fonts';
 @import 'var';
 
 @tailwind base;
@@ -10,7 +11,7 @@
   }
 
   body {
-    @apply overflow-y-scroll bg-light-950 leading-normal text-light-200 antialiased
+    @apply bg-light-950 leading-normal text-light-200
            dark:bg-dark-950 dark:text-dark-200;
   }
 
@@ -44,13 +45,5 @@
   h4,
   h5 {
     @apply font-semibold leading-tight text-light-100 dark:text-dark-100;
-  }
-}
-
-@tailwind components;
-
-@layer components {
-  :is(.wrapper) {
-    @apply me-auto ms-auto w-full max-w-7xl pe-6 ps-6;
   }
 }

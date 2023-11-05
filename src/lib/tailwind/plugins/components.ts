@@ -8,20 +8,13 @@ export default plugin(({ addComponents }) => {
     ['.wrapper, .content']: {
       width: '100%',
       'margin-left': 'auto',
-      'margin-right': 'auto',
-      'padding-left': '2rem',
-      'padding-right': '2rem'
+      'margin-right': 'auto'
     },
     ['.wrapper']: {
       'max-width': '80rem',
-      '@media (min-width: 1344px)': {
-        'padding-left': '0px',
-        'padding-right': '0px'
-      }
-    },
-    ['.content']: {
-      'max-width': '64rem',
-      '@media (min-width: 1088px)': {
+      'padding-left': '2rem',
+      'padding-right': '2rem',
+      '@media (min-width: 84rem)': {
         'padding-left': '0px',
         'padding-right': '0px'
       }

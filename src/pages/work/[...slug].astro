@@ -45,10 +45,11 @@ const { Content } = await entry.render();
       </div>
     </Hero>
 
-    <div class='content flex flex-col gap-10'>
+    <div class='content flex max-w-prose flex-col'>
       {
         entry.data.image && (
           <img
+            class='mb-8'
             src={entry.data.image}
             alt={entry.data.alt || ''}
           />
