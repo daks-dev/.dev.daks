@@ -81,7 +81,6 @@ const speed = s ?? duration * 5;
         this.timeout = setTimeout(() => this.classList.remove('opacity-75'), 500);
       }
       this.setAttribute('aria-hidden', String(!scroll));
-      this.setAttribute('tabindex', scroll ? '0' : '-1');
     };
 
     handle = (ev: Event) => {
