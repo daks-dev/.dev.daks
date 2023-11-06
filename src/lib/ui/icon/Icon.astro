@@ -20,13 +20,12 @@ const {
   ...props
 } = Astro.props;
 
-type Data = {
+const { body, view: viewBox = '0 0 256 256' } = (
+  typeof bundle[icon] === 'string' ? { body: bundle[icon] } : bundle[icon]
+) as {
   body: string;
   view?: string;
 };
-const { body, view: viewBox = '0 0 256 256' } = (
-  typeof bundle[icon] === 'string' ? { body: bundle[icon] } : bundle[icon]
-) as Data;
 
 const id = `_${Math.floor((1 + Math.random()) * 0x1000)
   .toString(16)

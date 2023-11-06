@@ -27,7 +27,7 @@ const speed = s ?? duration * 5;
   is='app-to-top'
   class={twMerge(
     'fixed right-4 top-12 z-40 flex w-10',
-    'origin-center opacity-50 hover:opacity-100',
+    'origin-center opacity-30 oversee:opacity-100',
     'aria-hidden:scale-0 aria-hidden:opacity-0 aria-hidden:disabled',
     'transition delay-150 ease-in-out',
     className
@@ -50,6 +50,7 @@ const speed = s ?? duration * 5;
 
   class AppToTop extends HTMLButtonElement {
     navbar: HTMLElement;
+    timeout?: ReturnType<typeof setTimeout>;
 
     constructor() {
       super();
@@ -64,14 +65,22 @@ const speed = s ?? duration * 5;
 
     disconnectedCallback() {
       window.removeEventListener('scroll', this.check);
+      clearTimeout(this.timeout);
     }
 
     get speed() {
       return this.dataset.speed ? parseInt(this.dataset.speed) : 1000;
     }
 
-    check = () =>
-      this.setAttribute('aria-hidden', String(window.scrollY < this.navbar.clientHeight));
+    check = () => {
+      const scroll = window.scrollY > this.navbar.clientHeight;
+      if (scroll) {
+        this.classList.add('opacity-75');
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => this.classList.remove('opacity-75'), 500);
+      }
+      this.setAttribute('aria-hidden', String(!scroll));
+    };
 
     handle = (ev: Event) => {
       ev.preventDefault();
