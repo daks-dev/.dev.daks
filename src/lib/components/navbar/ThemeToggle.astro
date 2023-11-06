@@ -1,5 +1,5 @@
 ---
-import Icon from '$lib/icons/Icon.astro';
+import Icon from '$lib/ui/icon/Icon.astro';
 ---
 
 <theme-toggle>
@@ -20,14 +20,20 @@ import Icon from '$lib/icons/Icon.astro';
         'before:rounded-full before:bg-impact dark:before:translate-x-full',
         'motion-safe:before:transition-transform motion-safe:before:duration-200'
       ]}>
-      <Icon icon='sun' />
+      <Icon
+        icon='sun'
+        class='disabled'
+      />
     </span>
     <span
       class:list={[
         'relative z-10 flex h-8 w-8 p-2',
         'text-impact-overlay dark:text-impact-text-over'
       ]}>
-      <Icon icon='moon-stars' />
+      <Icon
+        icon='moon-stars'
+        class='disabled'
+      />
     </span>
   </button>
 </theme-toggle>

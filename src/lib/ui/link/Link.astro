@@ -1,0 +1,45 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import twMerge from '$lib/tailwind';
+import { Icon, type IconKeys } from '$lib/ui/icon';
+
+type Props = Omit<HTMLAttributes<'a'>, 'class'> & {
+  class?: ClassName;
+  label?: string;
+  icon?: IconKeys;
+  size?: number | string;
+  pointer?: true;
+};
+
+const { class: className, href, label, icon, pointer, size, ...props } = Astro.props;
+
+const current =
+  Astro.url.pathname === href || Astro.url.pathname === `${href}/`
+    ? 'page'
+    : Astro.url.pathname.indexOf(`${href}/`) >= 0
+    ? 'step'
+    : undefined;
+---
+
+<a
+  class={twMerge(!pointer && 'page:disabled', className)}
+  {href}
+  aria-label={Astro.slots.has('default') || icon ? label : undefined}
+  aria-current={current}
+  {...props}>
+  <slot name='before' />
+  <slot>
+    {
+      icon ? (
+        <Icon
+          {icon}
+          class='disabled'
+          {size}
+        />
+      ) : (
+        <Fragment set:html={label} />
+      )
+    }
+  </slot>
+  <slot name='after' />
+</a>

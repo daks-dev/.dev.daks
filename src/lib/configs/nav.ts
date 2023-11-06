@@ -1,4 +1,4 @@
-import type { IconKeys } from '$lib/icons';
+import type { IconKeys } from '$lib/ui/icon';
 
 interface NavLink {
   href: string;
@@ -88,6 +88,14 @@ const config: NavSite = {
   },
   footer: {
     outers: [
+      {
+        href: '/blog',
+        class: 'mr-4 no-underline hover:scale-125 text-lg',
+        rel: 'prefetch',
+        itemprop: 'relatedLink',
+        label: 'blog',
+        icon: 'gear'
+      },
       {
         href: 'https://twitter.com',
         target: '_blank',

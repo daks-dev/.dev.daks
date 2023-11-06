@@ -1,0 +1,54 @@
+---
+import Link from '$lib/ui/link/Link.astro';
+import Icon from '$lib/ui/icon/Icon.astro';
+
+import nav from '$lib/configs/nav';
+const { outers } = nav.footer ?? {};
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class:list={[
+    'flex flex-col gap-12 px-8 py-12 bp:flex-row bp:justify-between bp:px-20 bp:py-10',
+    'text-center text-sm text-light-400 dark:text-dark-400'
+  ]}>
+  <div class='flex flex-col items-center gap-2 bp:flex-row bp:flex-wrap bp:gap-4'>
+    <p>
+      Designed & Developed in Moscow with
+      <a
+        class='link mx-1'
+        href='https://astro.build/'
+        target='_blank'>
+        Astro
+      </a>
+      <Icon
+        class='inline'
+        icon='rocket-launch'
+        size='1.2em'
+      />
+    </p>
+    <p>&copy; {currentYear} DAKS.DEV</p>
+  </div>
+
+  {
+    outers && (
+      <div class='flex flex-wrap items-center justify-center gap-4 bp:justify-end'>
+        {outers.map(({ class: className, ...props }) => (
+          <Link
+            class:list={['link', className]}
+            {...props}
+          />
+        ))}
+      </div>
+    )
+  }
+</footer>
+
+<style lang="postcss">
+  .link {
+    @apply text-light-400 dark:text-dark-400
+           underline decoration-transparent underline-offset-4 oversee:decoration-current
+           transition-colors duration-500;
+  }
+</style>

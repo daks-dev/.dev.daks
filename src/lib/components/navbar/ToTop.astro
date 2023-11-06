@@ -1,0 +1,84 @@
+---
+import twMerge from '$lib/tailwind';
+import { Icon, type IconKeys } from '$lib/ui/icon';
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'button'>, 'class'> & {
+  class?: ClassName;
+  icon?: IconKeys;
+  label?: string;
+  duration?: number;
+  speed?: number;
+};
+
+const {
+  class: className,
+  icon = 'arrow-fat-lines-up-duotone',
+  label = 'to top',
+  duration = 300,
+  speed: s,
+  ...props
+} = Astro.props;
+
+const speed = s ?? duration * 5;
+---
+
+<button
+  is='app-to-top'
+  class={twMerge(
+    'fixed right-4 top-12 z-40 flex w-10',
+    'origin-center opacity-50 hover:opacity-100',
+    'aria-hidden:scale-0 aria-hidden:opacity-0 aria-hidden:disabled',
+    'transition delay-150 ease-in-out',
+    className
+  )}
+  style={`transition-duration: ${duration}ms`}
+  aria-label={label}
+  aria-hidden='true'
+  data-speed={speed}
+  {...props}>
+  <slot>
+    <Icon
+      {icon}
+      class='h-auto w-full disabled'
+    />
+  </slot>
+</button>
+
+<script>
+  import { toTop } from '$lib/utils/scroll';
+
+  class AppToTop extends HTMLButtonElement {
+    navbar: HTMLElement;
+
+    constructor() {
+      super();
+      this.navbar = document.getElementById('app-navbar')!;
+    }
+
+    connectedCallback() {
+      window.addEventListener('load', this.check, { once: true });
+      window.addEventListener('scroll', this.check);
+      this.addEventListener('click', this.handle);
+    }
+
+    disconnectedCallback() {
+      window.removeEventListener('scroll', this.check);
+    }
+
+    get speed() {
+      return this.dataset.speed ? parseInt(this.dataset.speed) : 1000;
+    }
+
+    check = () =>
+      this.setAttribute('aria-hidden', String(window.scrollY < this.navbar.clientHeight));
+
+    handle = (ev: Event) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      toTop({ duration: this.speed });
+    };
+  }
+
+  customElements.define('app-to-top', AppToTop, { extends: 'button' });
+</script>

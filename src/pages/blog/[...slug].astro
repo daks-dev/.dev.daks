@@ -1,0 +1,65 @@
+---
+import { Picture } from 'astro:assets';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { FormattedDate } from '$lib/ui';
+import Layout from '@/layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post
+  }));
+}
+type Props = CollectionEntry<'blog'>;
+
+const {
+  data: { title, description, publish, update, image },
+  render
+} = Astro.props;
+const { Content } = await render();
+---
+
+<Layout
+  {title}
+  {description}
+  tag='article'
+  class='wrapper content max-w-prose'
+  role='main'
+  itemprop='mainContentOfPage'>
+  <header>
+    {
+      image && (
+        <Picture
+          class='mb-4 h-auto w-full max-w-full rounded-xl'
+          src={image}
+          formats={['avif', 'webp']}
+          widths={[480, 960]}
+          alt=''
+        />
+      )
+    }
+    <div class='mb-4 flex justify-between'>
+      <FormattedDate
+        class='font-mono text-base'
+        date={publish}
+        itemprop='datePublished'
+      />
+      {
+        update && (
+          <span>
+            Last updated on
+            <FormattedDate
+              class='font-mono text-base tracking-normal'
+              date={update}
+              itemprop='dateModified'
+            />
+          </span>
+        )
+      }
+    </div>
+    <h1>{title}</h1>
+  </header>
+
+  <Content />
+</Layout>

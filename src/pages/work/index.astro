@@ -3,13 +3,13 @@ import { getCollection } from 'astro:content';
 
 import Layout from '@/layouts/Base.astro';
 
-import ContactCTA from '$lib/components/ContactCTA.astro';
-import PortfolioPreview from '$lib/components/PortfolioPreview.astro';
-import Hero from '$lib/ui/Hero.astro';
-import Grid from '$lib/ui/Grid.astro';
+import ContactCTA from '$lib/components/contact-cta/ContactCTA.astro';
+import Portfolio from '$lib/components/portfolio/Portfolio.astro';
+import Hero from '$lib/ui/hero/Hero.astro';
+import Grid from '$lib/ui/grid/Grid.astro';
 
 const projects = (await getCollection('work')).sort(
-  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+  (a, b) => b.data.publish.valueOf() - a.data.publish.valueOf()
 );
 ---
 
@@ -26,7 +26,7 @@ const projects = (await getCollection('work')).sort(
       {
         projects.map((project) => (
           <li>
-            <PortfolioPreview project={project} />
+            <Portfolio project={project} />
           </li>
         ))
       }

@@ -19,28 +19,35 @@ const {
   size = '1em',
   ...props
 } = Astro.props;
-const iconPath = bundle[icon];
 
-const gradientId = `_${Math.floor((1 + Math.random()) * 0x1000)
+type Data = {
+  body: string;
+  view?: string;
+};
+const { body, view: viewBox = '0 0 256 256' } = (
+  typeof bundle[icon] === 'string' ? { body: bundle[icon] } : bundle[icon]
+) as Data;
+
+const id = `_${Math.floor((1 + Math.random()) * 0x1000)
   .toString(16)
   .substring(1)}`;
 ---
 
 <svg
-  class:list={twMerge('align-middle', className)}
+  class:list={twMerge('align-middle linecap-round linejoin-round', className)}
   xmlns='http://www.w3.org/2000/svg'
   width={size}
   height={size}
-  viewBox='0 0 256 256'
-  stroke={gradient ? `url(#${gradientId})` : color}
-  fill={gradient ? `url(#${gradientId})` : color}
+  {viewBox}
+  stroke={gradient ? `url(#${id})` : color}
+  fill={gradient ? `url(#${id})` : color}
   aria-hidden='true'
   {...props}>
-  <g set:html={iconPath} />
+  <g set:html={body} />
   {
     gradient && (
       <linearGradient
-        id={gradientId}
+        {id}
         x1='23'
         x2='235'
         y1='43'
