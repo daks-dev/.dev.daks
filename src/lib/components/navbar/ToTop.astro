@@ -33,6 +33,7 @@ const speed = s ?? duration * 5;
     className
   )}
   style={`transition-duration: ${duration}ms`}
+  tabindex='-1'
   aria-label={label}
   aria-hidden='true'
   data-speed={speed}
@@ -41,7 +42,6 @@ const speed = s ?? duration * 5;
     <Icon
       {icon}
       class='h-auto w-full disabled'
-      aria-hidden='true'
     />
   </slot>
 </button>
@@ -81,6 +81,7 @@ const speed = s ?? duration * 5;
         this.timeout = setTimeout(() => this.classList.remove('opacity-75'), 500);
       }
       this.setAttribute('aria-hidden', String(!scroll));
+      this.setAttribute('tabindex', scroll ? '0' : '-1');
     };
 
     handle = (ev: Event) => {
