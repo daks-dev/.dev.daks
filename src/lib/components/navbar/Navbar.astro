@@ -40,7 +40,7 @@ const {
     <menu-button>
       <template>
         <button
-          id='app-navbar-menu-toogle'
+          id='app-navbar-menu-toggle'
           class:list={[
             'relative flex p-2 ',
             'text-light-300 dark:text-dark-300',
@@ -109,7 +109,7 @@ const {
       ]}>
       {
         outers && (
-          <div class:list={['flex flex-wrap gap-x-3', 'xl:flex xl:justify-end xl:gap-0 bp:hidden']}>
+          <div class:list={['flex flex-wrap gap-x-3', 'bp:hidden xl:flex xl:justify-end xl:gap-0']}>
             {outers.map(({ class: className, ...props }) => (
               <Link
                 class:list={['outer', className]}
