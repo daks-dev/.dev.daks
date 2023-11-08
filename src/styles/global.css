@@ -1,5 +1,17 @@
-@import 'fonts';
-@import 'var';
+/* @import 'fonts'; */
+
+:root {
+  --bg-color: #ffffff;
+  --gradient-from: #c461f5;
+  --gradient-via: #7711a6;
+  --gradient-to: #1d0057;
+}
+
+:root.theme-dark {
+  --bg-color: #020617;
+  --gradient-from: #1d0057;
+  --gradient-to: #c461f5;
+}
 
 @tailwind base;
 
@@ -10,7 +22,7 @@
   }
 
   a {
-    @apply text-link;
+    @apply text-light-impact dark:text-dark-impact;
   }
 
   h1 {
@@ -38,6 +50,6 @@
   h3,
   h4,
   h5 {
-    @apply font-semibold leading-tight text-light-100 dark:text-dark-100;
+    @apply font-medium leading-tight text-light-100 dark:text-dark-100;
   }
 }

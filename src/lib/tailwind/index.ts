@@ -12,20 +12,12 @@ const twMerge = extendTailwindMerge(
     classGroups: {
       'bg-image': [
         {
-          bg: [
-            'gradient-impact',
-            'gradient-impact-orange',
-            'gradient-stroke',
-            'gradient-subtle',
-            'gradient-menu-items',
-            'gradient-menu-toogle',
-            'gradient-menu-toogle-expanded'
-          ]
+          bg: ['gradient-radial']
         }
       ],
       shadow: [
         {
-          shadow: ['toggle-theme']
+          shadow: ['inset']
         }
       ]
     }

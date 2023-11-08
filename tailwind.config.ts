@@ -8,7 +8,7 @@ import { fontSans } from './src/lib/tailwind/font-family';
 type Color = { [x: string]: string };
 const reverse = (color: Color) =>
   [50, 100, 200, 300, 400, 500, 600, 700, 800, 900].reduce(
-    (acc, val) => ((acc[val] = color[900 - (val > 50 ? val : 0)]), acc),
+    (acc, val) => ((acc[val] = color[val === 50 ? 900 : val === 900 ? 50 : 900 - val]), acc),
     { DEFAULT: color[950] } as Color
   );
 
@@ -20,78 +20,57 @@ export default {
   presets: [common],
 
   theme: {
+    screens: {
+      xs: '480px',
+      sm: '640px',
+      md: '768px',
+      bp: '800px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
+    },
+
     colors: {
       dark: {
         DEFAULT: '#ffffff',
-        ...colors.slate
+        ...colors.slate,
+        impact: {
+          DEFAULT: '#7611a6',
+          soft: '#1c0056',
+          hard: '#c561f6',
+          accent: '#ca7879',
+          text: '#ffffff',
+          subtle: 'rgba(197, 97, 247, 0.333)',
+          overlay: 'rgba(197, 97, 247, 0.333)'
+        }
       },
-      /*
-      {
-        DEFAULT: '#fff',
-        50: '#f3f4f7',
-        100: '#e3e6ee',
-        200: '#c3cadb',
-        300: '#a3acc8',
-        400: '#8490b5',
-        500: '#6474a2',
-        600: '#505d84',
-        700: '#3d4663',
-        800: '#283044',
-        900: '#141925',
-        950: '#090b11'
-      },
-      */
       light: {
         ...reverse(colors.slate),
-        950: '#ffffff'
-      },
-      /*
-      {
-        DEFAULT: '#090b11',
-        50: '#141925',
-        100: '#283044',
-        200: '#3d4663',
-        300: '#505d84',
-        400: '#6474a2',
-        500: '#8490b5',
-        600: '#a3acc8',
-        700: '#c3cadb',
-        800: '#e3e6ee',
-        900: '#f3f4f7',
-        950: '#fff'
-      },
-      */
-      impact: {
-        DEFAULT: 'var(--impact)',
-        light: 'var(--impact-light)',
-        dark: 'var(--impact-dark)',
-        overlay: 'var(--impact-overlay)',
-        'subtle-overlay': 'var(--impact-subtle-overlay)',
-        'text-over': 'var(--impact-text-over)'
-      },
-      link: {
-        DEFAULT: 'var(--link-color)'
+        950: '#ffffff',
+        impact: {
+          DEFAULT: '#7611a6',
+          soft: '#c561f6',
+          hard: '#1c0056',
+          accent: '#ca7879',
+          text: '#ffffff',
+          subtle: 'rgba(119, 17, 177, 0.333)',
+          overlay: 'rgba(197, 97, 247, 0.333)'
+        }
       },
       transparent: 'transparent',
       current: 'currentColor',
       selected: 'SelectedItem'
     },
-    backgroundImage: {
-      'gradient-impact': 'var(--gradient-impact)',
-      'gradient-impact-orange': 'var(--gradient-impact-orange)',
-      'gradient-stroke': 'var(--gradient-stroke)',
-      'gradient-subtle': 'var(--gradient-subtle)',
-      'gradient-menu-items': 'var(--gradient-menu-items)',
-      'gradient-menu-toogle': 'var(--gradient-menu-toogle)',
-      'gradient-menu-toogle-expanded': 'var(--gradient-menu-toogle-expanded)'
-    },
     extend: {
-      fontFamily: fontSans('"Open Sans"'),
-      screens: {
-        bp: '800px' // defaultTheme.screens.md
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
       },
       boxShadow: {
-        'toggle-theme': 'var(--shadow-toggle-theme)'
+        inset: 'inset 0 0 0 1px var(--tw-shadow-color)'
+      },
+      fontFamily: fontSans(/*'"Open Sans"'*/),
+      gradientColorStopPositions: {
+        '150%': '150%'
       }
     }
   }

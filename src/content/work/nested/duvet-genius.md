@@ -1,6 +1,6 @@
 ---
 title: Duvet Genius
-publish: 2020-03-04 00:00:00
+pubDate: 2020-03-04 00:00:00
 image: /images/stock/2.avif
 alt: Pearls of silky soft white cotton, bubble up under vibrant lighting
 description: |

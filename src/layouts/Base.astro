@@ -68,6 +68,7 @@ transition:animate={fade({ duration: '0.5s' })}
       {description}
       {robots}
       {app}
+      rss='/rss.xml'
     />
     <ViewTransitions />
   </head>
@@ -79,7 +80,7 @@ transition:animate={fade({ duration: '0.5s' })}
       <Navbar />
       <Element
         {role}
-        class={twMerge('flex grow flex-col gap-20', className)}
+        class={twMerge('flex grow flex-col', className)}
         {itemprop}>
         <slot />
       </Element>

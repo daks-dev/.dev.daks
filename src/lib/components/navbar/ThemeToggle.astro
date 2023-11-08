@@ -8,16 +8,16 @@ import Icon from '$lib/ui/icon/Icon.astro';
       'group',
       'flex cursor-pointer',
       'rounded-full bg-light-950 dark:bg-dark-950',
-      'shadow-toggle-theme'
+      'shadow-inset shadow-light-impact-overlay dark:shadow-dark-impact-overlay'
       // 'motion-safe:transition-colors motion-safe:duration-200'
     ]}>
     <span class='sr-only'>Dark theme</span>
     <span
       class:list={[
         'relative z-10 flex h-8 w-8 p-2',
-        'text-impact-text-over dark:text-impact-overlay',
+        'text-light-impact-text dark:text-dark-impact-overlay',
         'before:absolute before:inset-0 before:-z-10  before:content-null',
-        'before:rounded-full before:bg-impact dark:before:translate-x-full',
+        'before:rounded-full before:bg-light-impact dark:before:translate-x-full dark:before:bg-dark-impact',
         'motion-safe:before:transition-transform motion-safe:before:duration-200'
       ]}>
       <Icon
@@ -28,7 +28,7 @@ import Icon from '$lib/ui/icon/Icon.astro';
     <span
       class:list={[
         'relative z-10 flex h-8 w-8 p-2',
-        'text-impact-overlay dark:text-impact-text-over'
+        'dark:text-dark-impact-text text-light-impact-overlay'
       ]}>
       <Icon
         icon='moon-stars'

@@ -3,7 +3,7 @@ export default {
   scope: '/',
 
   name: 'DAKS.DEV',
-  shortName: 'D.D',
+  shortName: 'DAKS.DEV',
   description: 'DAKS develop resource',
 
   display: 'minimal-ui', // standalone

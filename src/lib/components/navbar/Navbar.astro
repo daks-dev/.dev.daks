@@ -31,11 +31,11 @@ const {
       href='/'>
       <Icon
         icon='code-block'
-        class='text-impact disabled'
+        class='text-light-impact disabled dark:text-dark-impact'
         size='2.1em'
         gradient
       />
-       DAKS.DEV
+      <span class:list={['bp:hidden', 'lg:inline']}>DAKS.DEV</span>
     </Link>
     <menu-button>
       <template>
@@ -44,9 +44,12 @@ const {
           class:list={[
             'relative flex p-2 ',
             'text-light-300 dark:text-dark-300',
-            'rounded-full border-0 bg-gradient-menu-toogle shadow-md dark:shadow-dark-800',
-            'aria-expanded:bg-gradient-menu-toogle-expanded aria-expanded:text-light dark:aria-expanded:text-dark',
-            'before:absolute before:-inset-px before:-z-10 before:rounded-full before:bg-gradient-stroke before:content-null',
+            'bg-gradient-to-t',
+            'from-light-900 to-light-500 to-150% dark:from-dark-700 dark:to-dark-900',
+            'rounded-full',
+            'shadow-md shadow-light-200 dark:shadow-dark-900',
+            'aria-expanded:text-light dark:aria-expanded:text-dark',
+            'aria-expanded:bg-gradient-to-b',
             'bp:hidden'
           ]}
           aria-label='menu toggle'
@@ -68,17 +71,18 @@ const {
     hidden>
     <menu
       class:list={[
-        'm-0 p-8',
+        'px-8 py-5',
         'flex list-none flex-col gap-4',
         'text-lg leading-tight',
-        'border border-light-800 bg-light-950 dark:border-dark-800 dark:bg-dark-950',
-        'bp:relative bp:px-2.5 bp:py-2',
+        'bg-light-950 dark:bg-dark-950',
+        'from-light-900 to-light-500 to-150% dark:from-dark-700 dark:to-dark-900',
+        'border border-light-700 dark:border-dark-800',
+        'bp:relative bp:px-2 bp:py-1.5',
         'bp:flex-row',
         'bp:text-sm',
-        'bp:rounded-full bp:border-none bp:bg-gradient-menu-items bp:shadow-md bp:shadow-dark-700',
-        'bp:before:content-null',
-        'bp:before:absolute bp:before:-inset-px bp:before:-z-10',
-        'bp:before:rounded-full bp:before:bg-gradient-stroke'
+        'bp:bg-gradient-to-t',
+        'bp:rounded-full',
+        'bp:shadow-md bp:shadow-light-200 dark:bp:shadow-dark-900'
       ]}>
       {
         inners.map(({ class: className, ...props }) => (
@@ -95,12 +99,17 @@ const {
       class:list={[
         'py-6 pl-6 pr-8',
         'flex justify-between gap-3',
-        'rounded-lg rounded-t-none bg-light-950 shadow-lg dark:bg-dark-950 dark:shadow-dark-800',
-        'bp:items-center bp:justify-self-end bp:bg-transparent bp:p-0 bp:shadow-none dark:bp:bg-transparent'
+        'bg-light-950 dark:bg-dark-950',
+        'rounded-lg rounded-t-none',
+        'shadow-md dark:shadow-dark-800',
+        'bp:p-0',
+        'bp:items-center bp:justify-self-end',
+        'bp:bg-transparent dark:bp:bg-transparent',
+        'bp:shadow-none'
       ]}>
       {
         outers && (
-          <div class:list={['flex flex-wrap gap-x-3', 'bp:hidden xl:flex xl:justify-end xl:gap-0']}>
+          <div class:list={['flex flex-wrap gap-x-3', 'xl:flex xl:justify-end xl:gap-0 bp:hidden']}>
             {outers.map(({ class: className, ...props }) => (
               <Link
                 class:list={['outer', className]}
@@ -171,17 +180,23 @@ const {
 <style lang="postcss">
   .inner {
     @apply block
-           text-light-400 no-underline aria-[current]:text-light dark:aria-[current]:text-dark
+           text-light-400 dark:text-dark-400
+           aria-[current]:text-light dark:aria-[current]:text-dark
+           no-underline
            bp:py-2 bp:px-4 bp:rounded-full
+           bp:oversee:text-light-100 dark:bp:oversee:text-dark-100
+           bp:oversee:bg-light-impact-subtle dark:bp:oversee:bg-dark-impact-subtle
+           bp:page:bg-light-impact bp:page:text-light-impact-text
+           dark:bp:page:bg-dark-impact dark:bp:page:text-dark-impact-text
            bp:ready:transition-colors bp:ready:duration-200
-           bp:oversee:text-light-100 dark:bp:oversee:text-dark-100 bp:oversee:bg-impact-subtle-overlay
-           bp:page:bg-impact bp:page:text-impact-text-over
            forced-colors:text-selected;
   }
 
   .outer {
     @apply flex p-2
-           oversee:text-impact-text-over text-impact-dark no-underline
+           oversee:text-light-impact-text dark:oversee:text-dark-impact-text
+           text-light-impact-hard dark:text-dark-impact-hard
+           no-underline
            ready:transition-colors ready:duration-200;
   }
 </style>

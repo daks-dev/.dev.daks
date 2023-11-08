@@ -41,6 +41,12 @@ const config: NavSite = {
         label: 'Work'
       },
       {
+        href: '/blog',
+        rel: 'prefetch',
+        itemprop: 'relatedLink',
+        label: 'Blog'
+      },
+      {
         href: '/about',
         rel: 'prefetch',
         itemprop: 'relatedLink',
@@ -89,11 +95,9 @@ const config: NavSite = {
   footer: {
     outers: [
       {
-        href: '/blog',
+        href: '/debug',
         class: 'mr-4 no-underline hover:scale-125 text-lg',
-        rel: 'prefetch',
-        itemprop: 'relatedLink',
-        label: 'blog',
+        label: 'debug',
         icon: 'gear'
       },
       {

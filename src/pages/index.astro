@@ -5,11 +5,11 @@ import { CallToAction, Grid, Hero, Icon, Pill } from '$lib/ui';
 import { ContactCTA, Portfolio, Skills } from '$lib/components';
 
 const projects = (await getCollection('work'))
-  .sort((a, b) => b.data.publish.valueOf() - a.data.publish.valueOf())
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 4);
 ---
 
-<Layout class='bp:gap-48'>
+<Layout class='gap-20 bp:gap-48'>
   <div class='wrapper flex flex-col gap-8 lg:gap-20'>
     <header
       class:list={[
@@ -51,7 +51,10 @@ const projects = (await getCollection('work'))
         class:list={[
           'w-full max-w-xs',
           'aspect-square object-cover object-top',
-          'rounded-3xl bg-gradient-impact shadow-lg shadow-light-300 dark:shadow-dark-700',
+          'bg-gradient-to-br dark:bg-gradient-to-tl',
+          'from-light-impact-soft via-light-impact to-light-impact-hard',
+          'rounded-3xl',
+          'shadow-lg shadow-light-300 dark:shadow-dark-700',
           'bp:aspect-3/4 bp:rounded-5xl'
         ]}
         src='/icons/astro.svg'
@@ -65,13 +68,28 @@ const projects = (await getCollection('work'))
   </div>
 
   <main class='wrapper flex flex-col gap-20 lg:gap-48'>
-    <section class='section with-background with-cta'>
-      <header class='section-header flex flex-col gap-2 lg:gap-4'>
-        <h3>Selected Work</h3>
+    <section
+      class:list={[
+        'relative',
+        'grid gap-8',
+        'bp:grid-cols-4 bp:gap-20',
+        'bp:grid-areas-["header_header_header_cta"_"gallery_gallery_gallery_gallery"]',
+        'with-background'
+      ]}>
+      <header
+        class:list={[
+          'max-w-[50ch]',
+          'flex flex-col gap-2 justify-self-center lg:gap-4',
+          'text-center text-lg text-light-300 dark:text-dark-300',
+          'bp:grid-area-[header]',
+          'bp:text-xl',
+          'bp:justify-self-start bp:text-left'
+        ]}>
+        <h3 class='text-4xl bp:text-6xl'>Selected Work</h3>
         <p>Take a look below at some of my featured work for clients from the past few years.</p>
       </header>
 
-      <div class='gallery'>
+      <div class='bp:grid-area-[gallery]'>
         <Grid variant='offset'>
           {
             projects.map((project) => (
@@ -83,7 +101,7 @@ const projects = (await getCollection('work'))
         </Grid>
       </div>
 
-      <div class='cta'>
+      <div class='bp:grid-area-[cta]'>
         <CallToAction href='/work'>
           View All
           <Icon
@@ -95,16 +113,31 @@ const projects = (await getCollection('work'))
       </div>
     </section>
 
-    <section class='section with-background bg-variant'>
-      <header class='section-header flex flex-col gap-2 lg:gap-4'>
-        <h3>Mentions</h3>
+    <section
+      class:list={[
+        'relative',
+        'grid gap-8',
+        'bp:grid-cols-4 bp:gap-20',
+        'bp:grid-areas-["header_header_header_header"_"gallery_gallery_gallery_gallery"]',
+        'with-background',
+        'bg-variant'
+      ]}>
+      <header
+        class:list={[
+          'max-w-[50ch]',
+          'flex flex-col gap-2 justify-self-center lg:gap-4',
+          'text-center text-lg text-light-300 dark:text-dark-300',
+          'bp:grid-area-[header]',
+          'bp:text-xl'
+        ]}>
+        <h3 class='text-4xl bp:text-6xl'>Mentions</h3>
         <p>
           I have been fortunate enough to receive praise for my work in several publications. Take a
           look below to learn more.
         </p>
       </header>
 
-      <div class='gallery'>
+      <div class='bp:grid-area-[gallery]'>
         <Grid variant='small'>
           {
             ['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
@@ -122,18 +155,8 @@ const projects = (await getCollection('work'))
 </Layout>
 
 <style lang="postcss">
-  .section {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .with-background {
-    position: relative;
-  }
-
   .with-background::before {
-    --hero-bg: var(--bg-image-subtle-2);
-
+    --hero-bg: var(--bg-image-subtle-1);
     position: absolute;
     top: 0;
     left: 50%;
@@ -141,7 +164,7 @@ const projects = (await getCollection('work'))
     background:
       url('/images/bg/noise.png') top center/220px repeat,
       var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-      var(--primary-950);
+      var(--bg-color);
     content: '';
     pointer-events: none;
     width: 100vw;
@@ -152,72 +175,16 @@ const projects = (await getCollection('work'))
   }
 
   .with-background.bg-variant::before {
-    --hero-bg: var(--bg-image-subtle-1);
-  }
-
-  .section-header {
-    color: var(--primary-300);
-    font-size: var(--text-lg);
-    text-align: center;
-    justify-self: center;
-    max-width: 50ch;
-  }
-
-  .section-header h3 {
-    font-size: var(--text-4xl);
-  }
-
-  @media (min-width: 50em) {
-    .section {
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-      gap: 5rem;
-    }
-    .section.with-cta {
-      grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-    }
-    .section-header {
-      grid-area: header;
-      font-size: var(--text-xl);
-    }
-    .section-header h3 {
-      font-size: var(--text-6xl);
-    }
-    .with-cta .section-header {
-      justify-self: flex-start;
-      text-align: left;
-    }
-    .gallery {
-      grid-area: gallery;
-    }
-    .cta {
-      grid-area: cta;
-    }
+    --hero-bg: var(--bg-image-subtle-0);
   }
 
   .mention-card {
     @apply h-28 flex justify-center items-center
            text-light-300 dark:text-dark-300 text-center
            border border-light-600 dark:border-dark-800 rounded-3xl
-           bg-gradient-subtle shadow-sm;
-    /*
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--primary-300);
-    text-align: center;
-    background: var(--gradient-subtle);
-    border: 1px solid var(--primary-600);
-    border-radius: 1.5rem;
-    height: 7rem;
-    box-shadow: var(--shadow-sm);
-    */
-  }
-
-  @media (min-width: 50em) {
-    .mention-card {
-      border-radius: 1.5rem;
-      height: 9.5rem;
-    }
+           bg-gradient-to-br from-20% to-150%
+           from-light-800 to-light-950 dark:from-dark-800 dark:to-dark-950
+           shadow-sm
+           bp:h-40 bp:rounded-3xl;
   }
 </style>

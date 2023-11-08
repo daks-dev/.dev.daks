@@ -66,16 +66,15 @@ export default plugin(({ addBase }) => {
       'background-color': 'var(--progress-color)'
     },
 
-    ['html']: {
+    ['html, body']: {
       width: '100%',
+      height: '100%',
       'min-height': '100%'
       // 'scroll-snap-type': 'y mandatory'
     },
     ['body']: {
-      width: '100%',
       '-webkit-font-smoothing': 'antialiased',
       '-moz-osx-font-smoothing': 'grayscale',
-      'min-height': '100vh',
       'overflow-y': 'scroll',
       'scroll-behavior': 'smooth'
     },

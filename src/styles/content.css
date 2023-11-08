@@ -13,8 +13,11 @@
     @apply mt-5;
   }
 
-  :is(.content) :where(h1 h2, h3, h4, h5) {
-    @apply mx-0 mt-7;
+  :is(.content) :where(h1, h2, h3, h4, h5, h6) {
+    @apply mb-3 mt-7;
+  }
+  :is(.content) :where(h1, h2, h3, h4, h5, h6) + * {
+    @apply mt-0;
   }
 
   :is(.content) a {
@@ -23,13 +26,40 @@
   }
 
   :is(.content) img {
-    @apply rounded-3xl border border-light-800 bg-gradient-subtle shadow-sm
-           dark:border-dark-800 dark:shadow-md dark:shadow-dark-700;
+    @apply rounded-3xl border
+           border-light-800
+           bg-gradient-to-br from-light-500/20 to-light-950
+           shadow-sm dark:border-dark-800
+           dark:from-dark-500/20
+           dark:to-dark-950 dark:shadow-md dark:shadow-dark-700;
   }
 
   :is(.content) blockquote {
-    @apply border-s-4 border-impact-dark ps-6
-           text-xl font-medium leading-tight text-light dark:text-dark
-           bp:text-2xl;
+    @apply border-s-4
+           border-light-impact ps-6 font-mono
+           font-medium leading-tight text-light dark:border-dark-impact dark:text-dark
+           bp:text-lg;
+  }
+
+  :is(.content) pre {
+    @apply rounded-md px-3 py-2
+           font-mono text-sm font-medium leading-relaxed;
+  }
+
+  :is(.content) :where(table, th, td) {
+    @apply border-collapse border border-light-400 dark:border-dark-500;
+  }
+  :is(.content) :where(th, td) {
+    @apply px-2 py-0.5;
+  }
+
+  :is(.content) ul {
+    @apply list-inside list-disc;
+  }
+  :is(.content) ol {
+    @apply list-inside list-decimal;
+  }
+  :is(.content) li > :where(ul, ol) {
+    @apply ml-4;
   }
 }

@@ -8,11 +8,13 @@ const { href } = Astro.props;
 
 <a
   class:list={[
-    'relative flex place-content-center gap-3 overflow-hidden',
-    'px-8 py-4 lg:px-10 lg:py-5',
-    'rounded-full bg-gradient-impact-orange shadow-md dark:shadow-dark-800',
+    'relative overflow-hidden px-8 py-4 lg:px-10',
+    'flex place-content-center gap-3',
     'whitespace-nowrap text-center leading-tight no-underline',
-    'text-2xl text-impact-text-over xl:text-3xl',
+    'text-light-impact-text dark:text-dark-impact-text text-2xl xl:text-3xl',
+    'bg-gradient-to-br',
+    'from-light-impact-accent via-light-impact to-light-impact-hard',
+    'rounded-full shadow-md dark:shadow-dark-800',
     'oversee:after:bg-light-950/30 dark:oversee:after:bg-dark-950/30',
     'after:absolute after:inset-0',
     'after:mix-blend-overlay after:content-null',

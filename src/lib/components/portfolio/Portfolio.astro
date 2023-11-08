@@ -11,9 +11,10 @@ const { data, slug } = Astro.props.project;
 <a
   class:list={[
     'grid h-44 grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden bp:h-[22rem]',
-    // 'font-brand',
     'text-xl no-underline',
-    'rounded-xl border border-light-800 bg-gradient-subtle dark:border-dark-800 bp:rounded-3xl',
+    'bg-gradient-to-br',
+    'from-light-500/20 to-light-950 dark:from-dark-500/20 dark:to-dark-950',
+    'rounded-xl border border-light-800 dark:border-dark-800 bp:rounded-3xl',
     'shadow-md shadow-light-500 dark:shadow-dark-700',
     'hover:shadow-lg hover:shadow-light-400 dark:hover:shadow-dark-600',
     'transition-shadow duration-200'

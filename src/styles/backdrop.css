@@ -1,5 +1,4 @@
 :root {
-  --bg-color: #ffffff;
   --bg-placeholder: linear-gradient(transparent, transparent);
   --bg-image-main: url('/images/bg/light/main/800w.avif');
   --bg-image-main-curves: url('/images/bg/light/main/curves.svg');
@@ -15,7 +14,6 @@
 }
 
 :root.theme-dark {
-  --bg-color: #090b11;
   --bg-image-main: url('/images/bg/dark/main/800w.avif');
   --bg-image-main-curves: url('/images/bg/dark/main/curves.svg');
   --bg-svg-blend-mode: darken;

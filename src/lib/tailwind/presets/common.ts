@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 
 import base from '../plugins/base';
 import components from '../plugins/components';
+import grid from '../plugins/grid';
 import svg from '../plugins/svg';
 import utilities from '../plugins/utilities';
 import variants from '../plugins/variants';
@@ -36,5 +37,5 @@ export default {
     }
   },
 
-  plugins: [base, variants, components, utilities, svg]
+  plugins: [base, variants, components, utilities, grid, svg, components]
 } as Partial<Config>;

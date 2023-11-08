@@ -7,6 +7,7 @@ import '@/styles/content.css';
 ---
 
 <Layout
+  class='gap-20'
   title='About | DAKS.DEV'
   description='About DAKS.DEV Lorem Ipsum'>
   <main
@@ -18,7 +19,9 @@ import '@/styles/content.css';
       <img
         class:list={[
           'mt-6 w-full max-w-xs self-center',
-          'rounded-3xl bg-gradient-impact',
+          'bg-gradient-to-br dark:bg-gradient-to-tl',
+          'from-light-impact-soft via-light-impact to-light-impact-hard',
+          'rounded-3xl',
           'shadow-md dark:shadow-dark-800'
         ]}
         src='/icons/astro.svg'

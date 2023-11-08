@@ -9,11 +9,12 @@ import Hero from '$lib/ui/hero/Hero.astro';
 import Grid from '$lib/ui/grid/Grid.astro';
 
 const projects = (await getCollection('work')).sort(
-  (a, b) => b.data.publish.valueOf() - a.data.publish.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
 <Layout
+  class='gap-20'
   title='My Work | DAKS.DEV'
   description="Learn about DAKS.DEV's most recent projects">
   <main class='wrapper flex flex-col gap-8'>

@@ -4,6 +4,8 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 import { FormattedDate } from '$lib/ui';
 import Layout from '@/layouts/Base.astro';
 
+import '@/styles/content.css';
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
@@ -14,7 +16,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const {
-  data: { title, description, publish, update, image },
+  data: { title, description, pubDate, image },
   render
 } = Astro.props;
 const { Content } = await render();
@@ -24,7 +26,7 @@ const { Content } = await render();
   {title}
   {description}
   tag='article'
-  class='wrapper content max-w-prose'
+  class='wrapper content max-w-prose gap-unset'
   role='main'
   itemprop='mainContentOfPage'>
   <header>
@@ -42,21 +44,9 @@ const { Content } = await render();
     <div class='mb-4 flex justify-between'>
       <FormattedDate
         class='font-mono text-base'
-        date={publish}
+        date={pubDate}
         itemprop='datePublished'
       />
-      {
-        update && (
-          <span>
-            Last updated on
-            <FormattedDate
-              class='font-mono text-base tracking-normal'
-              date={update}
-              itemprop='dateModified'
-            />
-          </span>
-        )
-      }
     </div>
     <h1>{title}</h1>
   </header>
