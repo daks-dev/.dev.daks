@@ -5,7 +5,6 @@ import { defineConfig } from 'astro/config';
 
 import compress from 'astro-compress';
 import mdx from '@astrojs/mdx';
-import prefetch from '@astrojs/prefetch';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import tailwind from '@astrojs/tailwind';
@@ -22,6 +21,11 @@ export default defineConfig({
 
   // redirects: { '/old': '/new', '/old/[...slug]': '/new/[...slug]' }
 
+  prefetch: {
+    defaultStrategy: 'viewport',
+    prefetchAll: false
+  },
+
   vite: {
     logLevel: 'info',
     resolve: {
@@ -30,6 +34,8 @@ export default defineConfig({
         $lib: fileURLToPath(new URL('./src/lib', import.meta.url))
       }
     }
+    // server: { fs: { strict: false } }
+    // build: { target: 'esnext' }
     // plugins: []
     // define: { 'process.env': process.env }
   },
@@ -42,14 +48,13 @@ export default defineConfig({
     }),
     tailwind(),
     mdx(),
-    prefetch({
-      throttle: 3
-    }),
+    /* @ts-ignore */
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date()
     }),
+    /* @ts-ignore */
     compress({
       Logger: 1
     })

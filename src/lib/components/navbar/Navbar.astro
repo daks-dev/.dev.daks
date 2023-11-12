@@ -28,7 +28,8 @@ const {
         'oversee:text-light oversee:hue-rotate-180 dark:oversee:text-dark',
         'transition duration-200'
       ]}
-      href='/'>
+      href='/'
+      prefetch>
       <Icon
         icon='code-block'
         class='text-light-impact disabled dark:text-dark-impact'
@@ -44,12 +45,12 @@ const {
           class:list={[
             'relative flex p-2 ',
             'text-light-300 dark:text-dark-300',
-            'bg-gradient-to-t',
+            'bg-linear',
             'from-light-900 to-light-500 to-150% dark:from-dark-700 dark:to-dark-900',
             'rounded-full',
             'shadow-md shadow-light-200 dark:shadow-dark-900',
             'aria-expanded:text-light dark:aria-expanded:text-dark',
-            'aria-expanded:bg-gradient-to-b',
+            'aria-expanded:bg-linear-180',
             'bp:hidden'
           ]}
           aria-label='menu toggle'
@@ -80,7 +81,7 @@ const {
         'bp:relative bp:px-2 bp:py-1.5',
         'bp:flex-row',
         'bp:text-sm',
-        'bp:bg-gradient-to-t',
+        'bp:bg-linear',
         'bp:rounded-full',
         'bp:shadow-md bp:shadow-light-200 dark:bp:shadow-dark-900'
       ]}>
@@ -130,8 +131,10 @@ const {
 </nav>
 
 <script>
+  import { breakpoint } from '../../tailwind/resolve';
+
   class MenuButton extends HTMLElement {
-    media = window.matchMedia('(min-width: 800px)');
+    media = window.matchMedia(`(min-width: ${breakpoint})`);
     btn: HTMLButtonElement;
     menu: HTMLElement;
 

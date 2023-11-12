@@ -33,7 +33,7 @@ aspectRatio={1200 / 500}
         <a
           class='no-underline md:first:col-span-2'
           href={`/blog/${post.slug}`}
-          rel='prefetch-intent'>
+          data-astro-prefetch>
           {post.data.image ? (
             <Picture
               class='mb-4 h-auto w-full max-w-full rounded-xl'

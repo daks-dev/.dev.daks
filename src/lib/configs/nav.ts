@@ -11,6 +11,7 @@ interface NavLink {
 interface NavItem extends NavLink {
   label: string;
   icon?: IconKeys;
+  prefetch?: true;
 }
 
 interface NavGroup {
@@ -30,90 +31,90 @@ const config: NavSite = {
     inners: [
       {
         href: '/',
-        rel: 'prefetch',
-        itemprop: 'relatedLink',
-        label: 'Home'
+        label: 'Home',
+        prefetch: true,
+        itemprop: 'relatedLink'
       },
       {
         href: '/work',
-        rel: 'prefetch',
-        itemprop: 'relatedLink',
-        label: 'Work'
+        label: 'Work',
+        prefetch: true,
+        itemprop: 'relatedLink'
       },
       {
         href: '/blog',
-        rel: 'prefetch',
-        itemprop: 'relatedLink',
-        label: 'Blog'
+        label: 'Blog',
+        prefetch: true,
+        itemprop: 'relatedLink'
       },
       {
         href: '/about',
-        rel: 'prefetch',
-        itemprop: 'relatedLink',
-        label: 'About'
+        label: 'About',
+        prefetch: true,
+        itemprop: 'relatedLink'
       }
     ],
     outers: [
       {
         href: 'https://twitter.com',
-        target: '_blank',
         label: 'Twitter',
-        icon: 'twitter-logo'
+        icon: 'twitter-logo',
+        target: '_blank'
       },
       {
         href: 'https://twitch.tv',
-        target: '_blank',
         label: 'Twitch',
-        icon: 'twitch-logo'
+        icon: 'twitch-logo',
+        target: '_blank'
       },
       {
         href: 'https://github.com',
-        target: '_blank',
         label: 'GitHub',
-        icon: 'github-logo'
+        icon: 'github-logo',
+        target: '_blank'
       },
       {
         href: 'https://codepen.io',
-        target: '_blank',
         label: 'CodePen',
-        icon: 'codepen-logo'
+        icon: 'codepen-logo',
+        target: '_blank'
       },
       {
         href: 'https://dribbble.com',
-        target: '_blank',
         label: 'dribbble',
-        icon: 'dribbble-logo'
+        icon: 'dribbble-logo',
+        target: '_blank'
       },
       {
         href: 'https://www.youtube.com',
-        target: '_blank',
         label: 'YouTube',
-        icon: 'youtube-logo'
+        icon: 'youtube-logo',
+        target: '_blank'
       }
     ]
   },
   footer: {
     outers: [
       {
-        href: '/debug',
         class: 'mr-4 no-underline hover:scale-125 text-lg',
+        href: '/debug',
         label: 'debug',
         icon: 'gear'
       },
       {
         href: 'https://twitter.com',
-        target: '_blank',
-        label: 'Twitter'
+        label: 'Twitter',
+        target: '_blank'
       },
       {
         href: 'https://github.com',
-        target: '_blank',
-        label: 'GitHub'
+        label: 'GitHub',
+        target: '_blank'
       },
       {
         href: 'https://codepen.io',
-        target: '_blank',
-        label: 'CodePen'
+        label: 'CodePen',
+        target: '_blank'
       }
     ]
   }

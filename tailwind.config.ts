@@ -2,6 +2,10 @@
 import colors from 'tailwindcss/colors';
 import type { Config } from 'tailwindcss';
 
+import 'dotenv/config';
+const breakpoint = process.env.PUBLIC_BREAKPOINT ?? 800;
+import screens from './src/lib/tailwind/screens';
+
 import common from './src/lib/tailwind/presets/common';
 import { fontSans } from './src/lib/tailwind/font-family';
 
@@ -13,23 +17,14 @@ const reverse = (color: Color) =>
   );
 
 export default {
-  content: ['./src/**/*.{html,js,jsx,ts,tsx,md,mdx,astro,svelte,vue}'],
+  content: ['./src/**/*.{html,js,jsx,ts,tsx,md,mdx,astro,svelte}'],
 
   darkMode: ['class', '.theme-dark'],
 
   presets: [common],
 
   theme: {
-    screens: {
-      xs: '480px',
-      sm: '640px',
-      md: '768px',
-      bp: '800px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px'
-    },
-
+    screens: screens(breakpoint),
     colors: {
       dark: {
         DEFAULT: '#ffffff',
@@ -62,16 +57,7 @@ export default {
       selected: 'SelectedItem'
     },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'
-      },
-      boxShadow: {
-        inset: 'inset 0 0 0 1px var(--tw-shadow-color)'
-      },
-      fontFamily: fontSans(/*'"Open Sans"'*/),
-      gradientColorStopPositions: {
-        '150%': '150%'
-      }
+      fontFamily: fontSans(/*'"Open Sans"'*/)
     }
   }
 

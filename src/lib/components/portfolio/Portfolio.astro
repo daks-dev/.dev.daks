@@ -10,9 +10,10 @@ const { data, slug } = Astro.props.project;
 
 <a
   class:list={[
-    'grid h-44 grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden bp:h-[22rem]',
+    'mx-auto h-48 max-w-xs overflow-hidden sm:max-w-lg bp:h-auto bp:max-w-none',
+    'grid grid-cols-[auto_1fr] grid-rows-[auto_1fr]',
     'text-xl no-underline',
-    'bg-gradient-to-br',
+    'bg-linear-150',
     'from-light-500/20 to-light-950 dark:from-dark-500/20 dark:to-dark-950',
     'rounded-xl border border-light-800 dark:border-dark-800 bp:rounded-3xl',
     'shadow-md shadow-light-500 dark:shadow-dark-700',
@@ -20,8 +21,8 @@ const { data, slug } = Astro.props.project;
     'transition-shadow duration-200'
   ]}
   href={`/work/${slug}`}
-  rel='prefetch'
-  itemprop='relatedLink'>
+  itemprop='relatedLink'
+  data-astro-prefetch>
   <span
     class:list={[
       'z-10 m-2 px-4 pb-2.5 pt-2',
@@ -32,7 +33,11 @@ const { data, slug } = Astro.props.project;
     {data.title}
   </span>
   <img
-    class:list={['h-full w-full object-cover', 'col-start-1 col-end-3 row-start-1 row-end-3']}
+    class:list={[
+      'h-full w-full object-cover',
+      'bp:aspect-video bp:h-auto',
+      'col-start-1 col-end-3 row-start-1 row-end-3'
+    ]}
     src={data.image}
     alt={data.alt || ''}
     loading='lazy'

@@ -26,9 +26,9 @@
   }
 
   :is(.content) img {
-    @apply rounded-3xl border
-           border-light-800
-           bg-gradient-to-br from-light-500/20 to-light-950
+    @apply bg-linear-150 rounded-3xl
+           border
+           border-light-800 from-light-500/20 to-light-950
            shadow-sm dark:border-dark-800
            dark:from-dark-500/20
            dark:to-dark-950 dark:shadow-md dark:shadow-dark-700;

@@ -51,7 +51,7 @@ const projects = (await getCollection('work'))
         class:list={[
           'w-full max-w-xs',
           'aspect-square object-cover object-top',
-          'bg-gradient-to-br dark:bg-gradient-to-tl',
+          'dark:bg-linear-330 bg-linear-150',
           'from-light-impact-soft via-light-impact to-light-impact-hard',
           'rounded-3xl',
           'shadow-lg shadow-light-300 dark:shadow-dark-700',
@@ -182,7 +182,7 @@ const projects = (await getCollection('work'))
     @apply h-28 flex justify-center items-center
            text-light-300 dark:text-dark-300 text-center
            border border-light-600 dark:border-dark-800 rounded-3xl
-           bg-gradient-to-br from-20% to-150%
+           bg-linear-150 from-20% to-150%
            from-light-800 to-light-950 dark:from-dark-800 dark:to-dark-950
            shadow-sm
            bp:h-40 bp:rounded-3xl;

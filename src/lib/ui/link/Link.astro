@@ -9,14 +9,15 @@ type Props = Omit<HTMLAttributes<'a'>, 'class'> & {
   icon?: IconKeys;
   size?: number | string;
   pointer?: true;
+  prefetch?: true;
 };
 
-const { class: className, href, label, icon, pointer, size, ...props } = Astro.props;
+const { class: className, href, label, icon, size, pointer, prefetch, ...props } = Astro.props;
 
 const current =
   Astro.url.pathname === href || Astro.url.pathname === `${href}/`
     ? 'page'
-    : Astro.url.pathname.indexOf(`${href}/`) >= 0
+    : Astro.url.pathname.startsWith(`${href}/`)
     ? 'step'
     : undefined;
 ---
@@ -26,6 +27,7 @@ const current =
   {href}
   aria-label={Astro.slots.has('default') || icon ? label : undefined}
   aria-current={current}
+  data-astro-prefetch={prefetch}
   {...props}>
   <slot name='before' />
   <slot>
