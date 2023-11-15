@@ -42,11 +42,9 @@ export default defineConfig({
       VitePWA({
         // registerType: 'autoUpdate',
         workbox: {
-          // globDirectory: 'build',
-          // globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,gif,webp,avif,woff,woff2,ttf,eot,ico}'],
-          // Don't fallback on document based (e.g. `/some-page`) requests
-          // This removes an errant console.log message from showing up.
-          // navigateFallback: null
+          globDirectory: 'build',
+          globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,gif,webp,avif,woff,woff2,ttf,eot,ico}'],
+          navigateFallback: null
         },
         devOptions: {
           // enabled: true
@@ -72,7 +70,7 @@ export default defineConfig({
     }),
     /* @ts-ignore */
     compress({
-      Image: false,
+      Image: true,
       Logger: 1
     })
   ],
