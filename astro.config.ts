@@ -1,6 +1,8 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'astro/config';
 
+import { VitePWA } from 'vite-plugin-pwa';
+
 // import node from '@astrojs/node';
 
 import compress from 'astro-compress';
@@ -33,10 +35,24 @@ export default defineConfig({
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         $lib: fileURLToPath(new URL('./src/lib', import.meta.url))
       }
-    }
-    // server: { fs: { strict: false } }
-    // build: { target: 'esnext' }
-    // plugins: []
+    },
+    // server: { fs: { strict: false } },
+    // build: { target: 'esnext' },
+    plugins: [
+      VitePWA({
+        // registerType: 'autoUpdate',
+        workbox: {
+          // globDirectory: 'build',
+          // globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,gif,webp,avif,woff,woff2,ttf,eot,ico}'],
+          // Don't fallback on document based (e.g. `/some-page`) requests
+          // This removes an errant console.log message from showing up.
+          // navigateFallback: null
+        },
+        devOptions: {
+          // enabled: true
+        }
+      })
+    ]
     // define: { 'process.env': process.env }
   },
 
@@ -56,6 +72,7 @@ export default defineConfig({
     }),
     /* @ts-ignore */
     compress({
+      Image: false,
       Logger: 1
     })
   ],

@@ -1,5 +1,5 @@
 ---
-import { /*slide, fade,*/ ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from 'astro:transitions';
 import twMerge from '$lib/tailwind';
 import { Footer, Head, Navbar, YandexMetrika } from '$lib/components';
 
@@ -32,31 +32,6 @@ import { app, seo } from '$lib/configs';
 const {
   yandex: { counter }
 } = seo;
-
-/*
-const animate = {
-  old: {
-    name: 'fadeIn',
-    duration: '0.2s',
-    easing: 'linear',
-    fillMode: 'forwards'
-  },
-  new: {
-    name: 'fadeOut',
-    delay: '0.1.5s',
-    duration: '5.3s',
-    easing: 'linear',
-    fillMode: 'backwards'
-  }
-};
-const fade = {
-  forwards: animate,
-  backwards: animate
-};
-
-transition:animate='none'
-transition:animate={fade({ duration: '0.5s' })}
-*/
 ---
 
 <html
@@ -87,5 +62,8 @@ transition:animate={fade({ duration: '0.5s' })}
       <Footer />
     </div>
     <YandexMetrika {counter} />
+    <script>
+      import '@/service-worker';
+    </script>
   </body>
 </html>
