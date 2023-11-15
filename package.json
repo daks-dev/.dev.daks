@@ -1,6 +1,6 @@
 {
   "name": "@daks.dev/.dev.daks",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "DAKS portfolio draft",
   "private": false,
   "type": "module",
@@ -44,6 +44,7 @@
     "cssnano": "^6.0.1",
     "cssnano-preset-advanced": "^6.0.1",
     "dotenv": "^16.3.1",
+    "jsdom": "22.1.0",
     "nanostores": "^0.9.5",
     "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
